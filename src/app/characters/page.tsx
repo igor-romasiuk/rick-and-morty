@@ -1,14 +1,16 @@
 import Link from "next/link";
+import { Character } from "@/types/Character";
 
 export default async function CharactersPage() {
-  const response = await fetch('https://rickandmortyapi.com/api/character')
-  const data = await response.json()
-  const characters = data.results
+
+  const response = await fetch('https://rickandmortyapi.com/api/character');
+  const data = await response.json();
+  const characters = data.results;
 
   return (
     <>
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-6">
-        {characters.map((character) => {
+      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-6">
+        {characters.map((character: Character) => {
           return (
             <li key={character.id} className="bg-white p-4 rounded-lg shadow-lg">
               <Link href={`/characters/${character.id}`}>
@@ -24,5 +26,5 @@ export default async function CharactersPage() {
         })}
       </ul>
     </>
-  );
+  )
 }
