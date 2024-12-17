@@ -10,9 +10,8 @@ export type Character = {
     };
     location: {
         name: string;
-        url: string;  
+        url: string;
     };
     image: string;
     episode: string[];
 }
-  
