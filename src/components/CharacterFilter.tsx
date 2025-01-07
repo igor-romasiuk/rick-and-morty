@@ -43,18 +43,20 @@ export default function CharacterFilter() {
     { label: 'Status', key: 'status', options: ['All', 'Alive', 'Dead', 'Unknown'] },
     { label: 'Species', key: 'species', options: ['All', 'Human', 'Alien', 'Robot', 'Animal', 'Mythological Creature', 'Other'] },
     { label: 'Gender', key: 'gender', options: ['All', 'Female', 'Male', 'Genderless', 'Unknown'] },
-  ]
+  ];
 
   return (
-    <div className="flex flex-col gap-5 p-7">
+    <div className="flex flex-wrap gap-4 items-center">
       {filterOptions.map(({ label, key, options }) => (
-        <div key={key} className="space-y-2">
-          <label htmlFor={key} className="block text-white text-lg font-semibold">{label}</label>
+        <div key={key} className="flex flex-col">
+          <label htmlFor={key} className="text-white text-sm font-semibold">
+            {label}
+          </label>
           <select
             id={key}
             value={filters[key]}
             onChange={(e) => handleFilterChange(key, e.target.value)}
-            className="w-full p-3 rounded-lg bg-gray-800 text-white text-lg border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="p-2 rounded-lg bg-gray-800 text-white text-sm border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"
           >
             {options.map((option) => (
               <option

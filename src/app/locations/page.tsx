@@ -2,6 +2,7 @@
 import { getPaginationRange } from "@/helpers/paginationUtils";
 import Pagination from "@/components/Pagination";
 import SearchAndFilterLocations from "@/components/SearchAndFilterLocations";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 interface LocationsPageProps {
   searchParams: {
@@ -29,8 +30,10 @@ export default async function LocationsPage({
 
   return (
     <div className="bg-black text-white min-h-screen">
+      
       <div className="flex flex-col md:flex-row">
         <main className="flex-1 p-6 space-y-10">
+          <Breadcrumbs />
           <h1 className="text-4xl font-extrabold text-center text-green-400 mb-6">
             Rick & Morty Locations
           </h1>

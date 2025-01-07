@@ -1,3 +1,4 @@
+import Breadcrumbs from "@/components/Breadcrumbs";
 import Link from "next/link";
 
 export default async function LocationPage(props: { params: { id: string } }) {
@@ -28,6 +29,7 @@ export default async function LocationPage(props: { params: { id: string } }) {
   return (
     <div className="bg-black text-white min-h-screen flex items-center justify-center">
       <div className="bg-gradient-to-t from-black to-gray-900 p-6 rounded-lg shadow-xl w-full max-w-screen-md">
+        <Breadcrumbs />
         <h1 className="text-3xl font-extrabold text-center text-white uppercase tracking-wide text-shadow-md mb-4">
           {name}
         </h1>
