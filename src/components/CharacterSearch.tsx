@@ -4,23 +4,23 @@ import { useState, ChangeEvent } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation'; // Для доступу до роутера
 
 interface CharacterSearchProps {
-  initialQuery: string
+  initialQuery: string;
 }
 
 export default function CharacterSearch({ initialQuery }: CharacterSearchProps) {
   const router = useRouter();
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
   const [query, setQuery] = useState(initialQuery);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setQuery(value);
 
-    const params = new URLSearchParams(searchParams.toString())
-    params.set('query', value)
-    params.set('page', '1')
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('query', value);
+    params.set('page', '1');
 
-    router.push(`/characters?${params.toString()}`)
+    router.push(`/characters?${params.toString()}`);
   };
 
   return (
@@ -31,11 +31,11 @@ export default function CharacterSearch({ initialQuery }: CharacterSearchProps) 
           value={query}
           onChange={handleInputChange}
           placeholder="Search characters..."
-          className="w-full p-3 pl-10 rounded-lg border-2 border-green-600 focus:outline-none text-black bg-white placeholder-gray-500"
+          className="w-full p-3 pl-10 rounded-lg border-2 border-green-600 focus:outline-none text-white bg-black placeholder-gray-500 transition-all duration-300 ease-in-out shadow-lg hover:shadow-2xl hover:border-green-400"
         />
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"
+          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-green-600 transition-all duration-300 ease-in-out"
           width="20"
           height="20"
           fill="none"
