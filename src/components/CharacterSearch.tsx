@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, ChangeEvent } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation'; // Для доступу до роутера
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface CharacterSearchProps {
   initialQuery: string;
