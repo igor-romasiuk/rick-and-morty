@@ -1,17 +1,35 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Select from 'react-select';
+import customStyles from '@/app/styles/StyleFiltering';
 
 export default function CharacterFilter() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const [filters, setFilters] = useState<Record<string, string>>({
-    status: searchParams.get('status') || '',
-    species: searchParams.get('species') || '',
-    gender: searchParams.get('gender') || '',
+    status: '',
+    species: '',
+    gender: '',
   });
+
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  useEffect(() => {
+    if (isClient) {
+      setFilters({
+        status: searchParams.get('status') || '',
+        species: searchParams.get('species') || '',
+        gender: searchParams.get('gender') || '',
+      });
+    }
+  }, [isClient, searchParams]);
 
   const handleFilterChange = (key: string, value: string) => {
     const updatedFilters = { ...filters, [key]: value };
@@ -45,29 +63,21 @@ export default function CharacterFilter() {
     { label: 'Gender', key: 'gender', options: ['All', 'Female', 'Male', 'Genderless', 'Unknown'] },
   ];
 
+  if (!isClient) {
+    return null;
+  }
+
   return (
     <div className="flex flex-wrap gap-4 items-center">
       {filterOptions.map(({ label, key, options }) => (
         <div key={key} className="flex flex-col">
-          <label htmlFor={key} className="text-white text-sm font-semibold">
-            {label}
-          </label>
-          <select
+          <Select
             id={key}
-            value={filters[key]}
-            onChange={(e) => handleFilterChange(key, e.target.value)}
-            className="p-2 rounded-lg bg-gray-800 text-white text-sm border border-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500"
-          >
-            {options.map((option) => (
-              <option
-                key={option}
-                value={option === 'All' ? '' : option}
-                className="bg-gray-800 text-white hover:bg-gray-700 focus:bg-green-500 focus:text-white"
-              >
-                {option}
-              </option>
-            ))}
-          </select>
+            value={{ label: filters[key] || label, value: filters[key] }}
+            onChange={(selectedOption: any) => handleFilterChange(key, selectedOption.value)}
+            options={options.map(option => ({ label: option, value: option === 'All' ? '' : option }))}
+            styles={customStyles}
+          />
         </div>
       ))}
     </div>

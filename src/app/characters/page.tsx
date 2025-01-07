@@ -35,8 +35,6 @@ export default async function CharactersPage({
 
   return (
     <div className="bg-black text-white min-h-screen">
-      
-
       <main className="flex-1 p-4">
         <div className="container mx-auto px-4">
           <Breadcrumbs />
