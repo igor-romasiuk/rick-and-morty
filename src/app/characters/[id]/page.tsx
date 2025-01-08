@@ -1,4 +1,5 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
+import Link from "next/link";
 
 export default async function CharacterPage(props: { params: { id: string } }) {
   const params = await props.params;
@@ -16,7 +17,21 @@ export default async function CharacterPage(props: { params: { id: string } }) {
   }
 
   const character = await response.json();
-  const { name, image, status, species, origin, location } = character;
+  const { name, image, status, species, gender, origin, location, episode } = character;
+
+  const episodeLocations = await Promise.all(
+    episode.map(async (url: string) => {
+      const res = await fetch(url);
+      if (res.ok) {
+        const data = await res.json();
+        return {
+          id: data.id,
+          name: data.name,
+        };
+      }
+      return { id: null, name: "Unknown location" };
+    })
+  );
 
   return (
     <div className="min-h-screen bg-black text-white px-6 flex flex-col">
@@ -24,38 +39,65 @@ export default async function CharacterPage(props: { params: { id: string } }) {
         <Breadcrumbs />
       </div>
 
-      <div className="flex items-center justify-center flex-1">
-        <div className="flex flex-col md:flex-row items-center bg-gray-700 rounded-3xl shadow-2xl p-12 md:p-20 w-full max-w-screen-xl">
-          <div className="relative group">
+      <div className="flex justify-center flex-1">
+        <div className="flex flex-col md:flex-row bg-gray-800 rounded-3xl shadow-2xl p-10 md:p-16 w-full max-w-screen-lg">
+          <div className="flex-shrink-0 flex justify-center items-center">
             <img
               src={image}
               alt={`Image of ${name}`}
-              className="w-60 h-60 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover rounded-full border-8 border-gray-600 shadow-lg transition-transform duration-300 ease-in-out group-hover:scale-110 group-hover:rotate-6"
+              className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-8 border-green-400 shadow-md"
             />
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-400 to-blue-500 opacity-0 group-hover:opacity-30 transition-opacity duration-300 ease-in-out"></div>
           </div>
 
-          <div className="flex flex-col items-center md:items-start space-y-8 md:ml-16 mt-8 md:mt-0">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-center md:text-left">
-              {name}
-            </h1>
-            <p className="text-2xl md:text-3xl lg:text-4xl text-green-400 font-semibold">
-              {status} - {species}
+          <div className="flex flex-col justify-center md:ml-12 mt-8 md:mt-0 text-center md:text-left space-y-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-green-400">{name}</h1>
+            <p className="text-xl md:text-2xl text-gray-300">
+              <span className="font-semibold text-green-400">Status:</span> {status}
             </p>
-            <div className="space-y-4 text-center md:text-left text-lg md:text-xl lg:text-2xl">
-              <p>
-                <span className="font-semibold text-gray-300">Last known location:</span>{" "}
-                {location.name}
-              </p>
-              <p>
-                <span className="font-semibold text-gray-300">First seen in:</span>{" "}
-                {origin.name}
-              </p>
-            </div>
+            <p className="text-xl md:text-2xl text-gray-300">
+              <span className="font-semibold text-green-400">Species:</span> {species}
+            </p>
+            <p className="text-xl md:text-2xl text-gray-300">
+              <span className="font-semibold text-green-400">Gender:</span> {gender}
+            </p>
+            <p className="text-xl md:text-2xl text-gray-300">
+              <span className="font-semibold text-green-400">Last known location:</span> {location.name}
+            </p>
+            <p className="text-xl md:text-2xl text-gray-300">
+              <span className="font-semibold text-green-400">First seen in:</span> {origin.name}
+            </p>
           </div>
         </div>
       </div>
-    </div>
 
+      <div className="mt-12 mb-8">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-green-400 mb-6">
+          Locations Visited
+        </h2>
+        <div className="bg-gray-800 rounded-3xl shadow-lg p-6 md:p-10">
+          <ul className="space-y-4 text-center">
+            {episodeLocations.map((loc) =>
+              loc.id ? (
+                <li key={loc.id} className="group">
+                  <Link
+                    href={`/locations/${loc.id}`}
+                    className="block text-lg md:text-xl text-gray-300 bg-gray-700 rounded-lg py-3 px-5 hover:bg-green-500 hover:text-black transition-colors"
+                  >
+                    {loc.name}
+                  </Link>
+                </li>
+              ) : (
+                <li
+                  key={loc.name}
+                  className="text-lg md:text-xl text-gray-300 bg-gray-700 rounded-lg py-3 px-5"
+                >
+                  {loc.name}
+                </li>
+              )
+            )}
+          </ul>
+        </div>
+      </div>
+    </div>
   );
 }
