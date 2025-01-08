@@ -44,24 +44,26 @@ export default async function CharactersPage({
           <CharacterFilter />
         </div>
 
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 animate-fadeIn">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 animate-fadeIn">
           {characters.map((character: Character) => (
             <li
               key={character.id}
               className="bg-gradient-to-t from-green-700 to-green-900 p-4 rounded-lg shadow-xl transform transition-transform hover:scale-105 hover:shadow-2xl hover:translate-z-10 hover:from-green-600 hover:to-green-800"
             >
               <Link href={`/characters/${character.id}`}>
-                <img
-                  src={character.image}
-                  alt={character.name}
-                  className="w-full h-64 object-cover rounded-t-lg mb-4 border-4 border-yellow-300 transition-transform duration-300 hover:border-green-500 hover:translate-z-10"
-                />
+                <div className="relative w-full h-80 mb-4 rounded-lg overflow-hidden">
+                  <img
+                    src={character.image}
+                    alt={character.name}
+                    className="w-full h-full object-cover transform transition-transform duration-300 hover:scale-110"
+                  />
+                </div>
                 <div className="text-center">
                   <h2 className="text-xl font-bold text-white uppercase tracking-wide text-shadow-md">
                     {character.name}
                   </h2>
-                  <p className="text-yellow-200">Status: {character.status}</p>
-                  <p className="text-yellow-200">Species: {character.species}</p>
+                  <p className="text-yellow-200 text-sm mt-2">Status: {character.status}</p>
+                  <p className="text-yellow-200 text-sm">Species: {character.species}</p>
                 </div>
               </Link>
             </li>

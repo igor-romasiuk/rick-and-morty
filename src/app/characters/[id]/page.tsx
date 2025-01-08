@@ -41,11 +41,11 @@ export default async function CharacterPage(props: { params: { id: string } }) {
 
       <div className="flex justify-center flex-1">
         <div className="flex flex-col md:flex-row bg-gray-800 rounded-3xl shadow-2xl p-10 md:p-16 w-full max-w-screen-lg">
-          <div className="flex-shrink-0 flex justify-center items-center">
+          <div className="flex justify-center items-center">
             <img
               src={image}
               alt={`Image of ${name}`}
-              className="w-64 h-64 md:w-80 md:h-80 object-cover rounded-full border-8 border-green-400 shadow-md"
+              className="border-8 border-green-400"
             />
           </div>
 
