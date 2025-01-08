@@ -2,15 +2,13 @@ import Link from "next/link";
 
 type NavigationProps = {
   isMenuOpen: boolean;
-  toggleMenu: () => void;
 };
 
-const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, toggleMenu }) => {
+const Navigation: React.FC<NavigationProps> = ({ isMenuOpen }) => {
   return (
     <>
-      {/* Десктопна навігація */}
-      <nav className="hidden md:flex">
-        <ul className="flex space-x-6 md:space-x-8"> {/* Змінюється відстань на великих екранах */}
+      <nav className="hidden md:flex flex-1 justify-center">
+        <ul className="flex space-x-6 md:space-x-8">
           <li>
             <Link href="/" className="hover:text-yellow-400 transition duration-300 text-lg md:text-xl">
               Home
@@ -34,20 +32,12 @@ const Navigation: React.FC<NavigationProps> = ({ isMenuOpen, toggleMenu }) => {
         </ul>
       </nav>
 
-      {/* Мобільне меню */}
-      <button
-        onClick={toggleMenu}
-        className="md:hidden text-2xl text-white focus:outline-none z-20"
-      >
-        {isMenuOpen ? "X" : "☰"}
-      </button>
-
       <div
         className={`md:hidden fixed top-0 left-0 w-full bg-gray-800 text-white transition-all duration-300 ease-in-out transform ${isMenuOpen ? "translate-y-0" : "-translate-y-full"}`}
-        style={{ zIndex: 10 }}
+        style={{ zIndex: 20 }}
       >
         <nav>
-          <ul className="space-y-4 md:space-y-6 text-center py-4 md:py-6"> {/* Відстань між пунктами змінюється на різних екранах */}
+          <ul className="space-y-4 md:space-y-6 text-center py-4 md:py-6">
             <li>
               <Link href="/" className="block hover:text-yellow-400 transition duration-300 text-xl">
                 Home
