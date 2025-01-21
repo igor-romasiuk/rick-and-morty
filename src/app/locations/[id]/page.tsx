@@ -1,5 +1,7 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Link from "next/link";
+import Image from 'next/image';
+import { Character } from "@/types/Character";
 
 export default async function LocationPage(props: { params: { id: string } }) {
   const params = await props.params;
@@ -27,28 +29,38 @@ export default async function LocationPage(props: { params: { id: string } }) {
   );
 
   return (
-    <div className="bg-black text-white min-h-screen flex items-center justify-center">
-      <div className="bg-black p-6 rounded-lg shadow-xl">
+    <div className="bg-black text-white min-h-screen">
+      <div className="w-full max-w-screen-xl px-6 py-4">
         <Breadcrumbs />
-        <h1 className="text-3xl font-extrabold text-center text-white uppercase tracking-wide text-shadow-md mb-4">
-          {name}
-        </h1>
-        <p className="text-xl text-yellow-200 text-center">Type: {type}</p>
-        <p className="text-xl text-yellow-200 text-center">Dimension: {dimension}</p>
+      </div>
+
+      <div className="w-full max-w-screen-xl px-6 py-6 mx-auto bg-black rounded-lg shadow-xl">
+        <div className="text-center mb-6">
+          <h1 className="text-3xl font-extrabold text-white uppercase tracking-wide text-shadow-md mb-4">
+            {name}
+          </h1>
+          <p className="text-xl text-yellow-200">Type: {type}</p>
+          <p className="text-xl text-yellow-200">Dimension: {dimension}</p>
+        </div>
+
         <div className="mt-6">
-          <h2 className="text-2xl font-bold text-white">Residents in this location:</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-6">
-            {residentDetails.map((resident: any) => (
+          <h2 className="text-2xl font-bold text-white mb-4">
+            Residents in this location:
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {residentDetails.map((resident: Character) => (
               <div
                 key={resident.id}
                 className="bg-gradient-to-t from-green-700 to-green-900 p-4 rounded-lg shadow-xl transition-all hover:scale-105 hover:shadow-2xl hover:from-green-600 hover:to-green-800"
               >
                 <Link href={`/characters/${resident.id}`}>
-                  <div className="overflow-hidden rounded-t-lg">
-                    <img
+                  <div className="relative h-64 overflow-hidden rounded-t-lg">
+                    <Image
                       src={resident.image}
                       alt={resident.name}
-                      className="w-full h-64 object-cover mb-4 border-4 border-yellow-300 transition-transform duration-300 hover:border-green-500 hover:scale-105"
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                      className="object-cover transition-transform duration-300 hover:scale-105"
                     />
                   </div>
                   <div className="text-center">

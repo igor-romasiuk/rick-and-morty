@@ -13,6 +13,9 @@ export default {
   			background: 'var(--background)',
   			foreground: 'var(--foreground)'
   		},
+		fontFamily: {
+			mono: ['Consolas', 'Monaco', 'Courier New', 'monospace'],
+		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

@@ -3,7 +3,7 @@ export const getPaginationRange = (currentPage: number, totalPages: number) => {
   const maxPagesToShow = 5;
 
   let start = Math.max(currentPage - Math.floor(maxPagesToShow / 2), 1);
-  let end = Math.min(start + maxPagesToShow - 1, totalPages);
+  const end = Math.min(start + maxPagesToShow - 1, totalPages);
 
   if (end - start + 1 < maxPagesToShow) {
     start = Math.max(end - maxPagesToShow + 1, 1);

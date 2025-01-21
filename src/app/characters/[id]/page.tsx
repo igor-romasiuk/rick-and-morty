@@ -1,5 +1,6 @@
 import Breadcrumbs from "@/components/Breadcrumbs";
 import Link from "next/link";
+import Image from 'next/image';
 
 export default async function CharacterPage(props: { params: { id: string } }) {
   const params = await props.params;
@@ -42,10 +43,13 @@ export default async function CharacterPage(props: { params: { id: string } }) {
       <div className="flex justify-center flex-1">
         <div className="flex flex-col md:flex-row bg-gray-800 rounded-3xl shadow-2xl p-10 md:p-16 w-full max-w-screen-lg">
           <div className="flex justify-center items-center">
-            <img
+            <Image
               src={image}
               alt={`Image of ${name}`}
+              width={300}
+              height={300}
               className="border-8 border-green-400"
+              priority
             />
           </div>
 
