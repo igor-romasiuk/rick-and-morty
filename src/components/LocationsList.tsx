@@ -3,9 +3,18 @@ import { Location } from '@/types/Location';
 
 interface LocationsListProps {
   locations: Location[];
+  isLoading?: boolean;
 }
 
-const LocationsList: React.FC<LocationsListProps> = ({ locations }) => {
+const LocationsList: React.FC<LocationsListProps> = ({ locations, isLoading }) => {
+  if (isLoading) {
+    return <div className="text-center">Loading locations...</div>;
+  }
+
+  if (locations.length === 0) {
+    return <div className="text-center">No locations found</div>;
+  }
+
   return (
     <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 animate-fadeIn">
       {locations.map((location: Location) => (

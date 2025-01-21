@@ -5,7 +5,13 @@ interface AuthState {
   email: string;
   password: string;
   error: string | null;
-  user: { email: string; password: string } | null;
+  user: { 
+    email: string; 
+    password: string;
+    token?: string;
+    expiresAt?: number;
+  } | null;
+  isLoading: boolean;
 }
 
 const initialState: AuthState = {
@@ -14,6 +20,7 @@ const initialState: AuthState = {
   password: "",
   error: null,
   user: null,
+  isLoading: false,
 };
 
 const authSlice = createSlice({

@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { toggleMenu, toggleModal } from "@/redux/slices/uiSlice";
+import { GiHamburgerMenu, GiCrossMark } from "react-icons/gi";
 import Navigation from "./Navigation";
 import UserIcon from "./UserIcon";
 import LoginModal from "./LoginModal";
@@ -15,28 +17,40 @@ export default function Header() {
 
   const handleToggleMenu = () => dispatch(toggleMenu());
   const handleToggleModal = () => dispatch(toggleModal());
+  const handleCloseMenu = () => dispatch(toggleMenu());
 
   return (
-    <header className="bg-gray-900 text-white shadow-md">
-      <div className="container flex justify-between items-center py-4 px-6">
+    <header className="bg-gray-800 text-white shadow-lg">
+      <div className="flex justify-between items-center py-4 px-6 relative">
         <button
           onClick={handleToggleMenu}
-          className="md:hidden text-3xl text-white focus:outline-none z-30"
+          className="md:hidden text-4xl text-green-400 focus:outline-none z-30"
         >
-          {isMenuOpen ? "X" : "☰"}
+          {isMenuOpen ? <GiCrossMark /> : <GiHamburgerMenu />}
         </button>
 
-        <h1
-          className={`text-3xl font-bold text-green-500 transition-all duration-300 ${
-            isMenuOpen ? "text-center" : "md:flex-none"
-          }`}
+        <Link
+          href="/"
+          className="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none"
         >
-          <Link href="/">Rick & Morty</Link>
-        </h1>
+          <Image
+            src="/logo.svg"
+            alt="Rick and Morty Logo"
+            width={160}
+            height={47}
+            style={{
+              width: '160px',
+              height: 'auto',
+            }}
+            priority
+          />
+        </Link>
 
-        <Navigation isMenuOpen={isMenuOpen} />
+        <Navigation isMenuOpen={isMenuOpen} onCloseMenu={handleCloseMenu} />
 
-        <UserIcon onClick={handleToggleModal} />
+        <div className="ml-auto">
+          <UserIcon onClick={handleToggleModal} />
+        </div>
       </div>
 
       {isModalOpen && <LoginModal onClose={handleToggleModal} />}

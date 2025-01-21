@@ -1,4 +1,3 @@
-// pages/locations/index.tsx
 import { getPaginationRange } from "@/helpers/paginationUtils";
 import Pagination from "@/components/Pagination";
 import SearchAndFilterLocations from "@/components/SearchAndFilterLocations";
@@ -13,24 +12,64 @@ interface LocationsPageProps {
   };
 }
 
+interface Location {
+  type: string;
+  dimension: string;
+}
+
 export default async function LocationsPage({
   searchParams,
 }: LocationsPageProps) {
-  const { page = "1", query = "", type = "", dimension = "" } = await searchParams;
+  const page = searchParams?.page ?? "1";
+  const query = searchParams?.query ?? "";
+  const type = searchParams?.type ?? "";
+  const dimension = searchParams?.dimension ?? "";
+  
   const currentPage = Number(page);
 
-  const apiUrl = `https://rickandmortyapi.com/api/location/?name=${query}&type=${type}&dimension=${dimension}&page=${currentPage}`;
+  async function fetchLocationsData() {
+    const apiUrl = `https://rickandmortyapi.com/api/location/?name=${query}&type=${type}&dimension=${dimension}&page=${currentPage}`;
+    const response = await fetch(apiUrl, { 
+      next: { 
+        revalidate: 3600
+      } 
+    });
 
-  const response = await fetch(apiUrl);
-  const data = await response.json();
+    if (!response.ok) {
+      throw new Error('Failed to fetch locations');
+    }
+
+    return response.json();
+  }
+
+  async function fetchLocationOptions() {
+    const response = await fetch('https://rickandmortyapi.com/api/location/?page=1', { 
+      next: { 
+        revalidate: 3600 
+      } 
+    });
+    
+    if (!response.ok) {
+      throw new Error('Failed to fetch location options');
+    }
+    
+    return response.json();
+  }
+
+  const [data, allLocationsData] = await Promise.all([
+    fetchLocationsData(),
+    fetchLocationOptions()
+  ]);
+
+  const availableTypes = Array.from(new Set(allLocationsData.results.map((location: Location) => location.type)));
+  const availableDimensions = Array.from(new Set(allLocationsData.results.map((location: Location) => location.dimension)));
 
   const totalPages = data.info ? Math.ceil(data.info.count / 20) : 1;
-  const locations = data.results?.slice(0) || [];
+  const locations = data.results || [];
   const paginationRange = getPaginationRange(currentPage, totalPages);
 
   return (
     <div className="bg-black text-white min-h-screen">
-      
       <div className="flex flex-col md:flex-row">
         <main className="flex-1 p-6 space-y-10">
           <Breadcrumbs />
@@ -43,6 +82,8 @@ export default async function LocationsPage({
             initialQuery={query}
             initialType={type}
             initialDimension={dimension}
+            availableTypes={availableTypes as string[]}
+            availableDimensions={availableDimensions as string[]}
           />
 
           <div className="mt-8 flex justify-center">

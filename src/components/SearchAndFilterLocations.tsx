@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Select from 'react-select';
 import LocationsList from './LocationsList';
 import { Location } from '@/types/Location';
@@ -12,6 +12,8 @@ interface SearchAndFilterLocationsProps {
   initialQuery: string;
   initialType: string;
   initialDimension: string;
+  availableTypes: string[];
+  availableDimensions: string[];
 }
 
 const SearchAndFilterLocations: React.FC<SearchAndFilterLocationsProps> = ({
@@ -19,68 +21,83 @@ const SearchAndFilterLocations: React.FC<SearchAndFilterLocationsProps> = ({
   initialQuery,
   initialType,
   initialDimension,
+  availableTypes,
+  availableDimensions,
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [mounted, setMounted] = useState(false);
 
   const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [filterType, setFilterType] = useState(initialType);
   const [filterDimension, setFilterDimension] = useState(initialDimension);
-  const [filteredLocations, setFilteredLocations] = useState(locations);
-
-  const types = Array.from(new Set(locations.map(location => location.type)));
-  const dimensions = Array.from(new Set(locations.map(location => location.dimension)));
 
   useEffect(() => {
-    setSearchQuery(searchParams.get('query') || initialQuery);
-    setFilterType(searchParams.get('type') || initialType);
-    setFilterDimension(searchParams.get('dimension') || initialDimension);
-  }, [searchParams, initialQuery, initialType, initialDimension]);
-
-  useEffect(() => {
-    setFilteredLocations(
-      locations.filter((location) => {
-        const matchesSearchQuery = location.name.toLowerCase().includes(searchQuery.toLowerCase());
-        const matchesFilterType = location.type.toLowerCase().includes(filterType.toLowerCase());
-        const matchesFilterDimension = location.dimension.toLowerCase().includes(filterDimension.toLowerCase());
-        return matchesSearchQuery && matchesFilterType && matchesFilterDimension;
-      })
-    );
-  }, [searchQuery, filterType, filterDimension, locations]);
-
-  useEffect(() => {
-    const queryParams = new URLSearchParams();
-
-    if (searchQuery) queryParams.set('query', searchQuery);
-    if (filterType) queryParams.set('type', filterType);
-    if (filterDimension) queryParams.set('dimension', filterDimension);
-
-    router.push(`?${queryParams.toString()}`, { scroll: false });
-  }, [searchQuery, filterType, filterDimension, router]);
+    setMounted(true);
+  }, []);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
+    const value = e.target.value;
+    setSearchQuery(value);
+    updateURL({ query: value });
   };
 
-  const handleFilterTypeChange = (selectedOption: any) => {
-    setFilterType(selectedOption.value);
+  const handleFilterTypeChange = (selectedOption: { label: string; value: string } | null) => {
+    const value = selectedOption?.value || '';
+    setFilterType(value);
+    updateURL({ type: value });
   };
 
-  const handleFilterDimensionChange = (selectedOption: any) => {
-    setFilterDimension(selectedOption.value);
+  const handleFilterDimensionChange = (selectedOption: { label: string; value: string } | null) => {
+    const value = selectedOption?.value || '';
+    setFilterDimension(value);
+    updateURL({ dimension: value });
   };
+
+  const updateURL = (updates: { [key: string]: string }) => {
+    const params = new URLSearchParams(searchParams.toString());
+    Object.entries(updates).forEach(([key, value]) => {
+      if (value) {
+        params.set(key, value);
+      } else {
+        params.delete(key);
+      }
+    });
+    params.set('page', '1');
+    router.push(`/locations?${params.toString()}`);
+  };
+
+  const typeOptions = useMemo(() => [
+    { label: 'Filter by type...', value: '' },
+    ...availableTypes.map((type) => ({ label: type, value: type }))
+  ], [availableTypes]);
+
+  const dimensionOptions = useMemo(() => [
+    { label: 'Filter by dimension...', value: '' },
+    ...availableDimensions.map((dimension) => ({ label: dimension, value: dimension }))
+  ], [availableDimensions]);
+
+  if (!mounted) {
+    return (
+      <div className="space-y-4">
+        <div className="h-10 bg-gray-700 rounded animate-pulse"></div>
+        <div className="h-10 bg-gray-700 rounded animate-pulse"></div>
+        <div className="h-10 bg-gray-700 rounded animate-pulse"></div>
+      </div>
+    );
+  }
 
   return (
     <div>
       <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-10 mb-6">
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 items-center">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 items-center w-full max-w-3xl">
           <div className="relative w-full">
             <input
               type="text"
               value={searchQuery}
               onChange={handleSearchChange}
-              className="w-full p-3 pl-10 rounded-lg border-2 border-green-600 focus:outline-none text-white bg-black placeholder-gray-500 transition-all duration-300 ease-in-out shadow-lg hover:shadow-2xl hover:border-green-400"
               placeholder="Search locations..."
+              className="w-full p-3 pl-10 rounded-lg border-2 border-green-600 focus:outline-none text-white bg-black placeholder-gray-500 transition-all duration-300 ease-in-out shadow-lg hover:shadow-2xl hover:border-green-400"
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -101,21 +118,28 @@ const SearchAndFilterLocations: React.FC<SearchAndFilterLocationsProps> = ({
           </div>
 
           <Select
-            value={{ label: filterType || 'Filter by type...', value: filterType }}
+            instanceId="type-select"
+            value={filterType ? { label: filterType, value: filterType } : null}
             onChange={handleFilterTypeChange}
-            options={[{ label: 'Filter by type...', value: '' }, ...types.map((type) => ({ label: type, value: type }))]}
+            options={typeOptions}
             styles={customStyles}
+            isClearable
+            placeholder="By type..."
           />
 
           <Select
-            value={{ label: filterDimension || 'Filter by dimension...', value: filterDimension }}
+            instanceId="dimension-select"
+            value={filterDimension ? { label: filterDimension, value: filterDimension } : null}
             onChange={handleFilterDimensionChange}
-            options={[{ label: 'Filter by dimension...', value: '' }, ...dimensions.map((dimension) => ({ label: dimension, value: dimension }))]}
+            options={dimensionOptions}
             styles={customStyles}
+            isClearable
+            placeholder="By dimension..."
           />
         </div>
       </div>
-      <LocationsList locations={filteredLocations} />
+      
+      <LocationsList locations={locations} />
     </div>
   );
 };

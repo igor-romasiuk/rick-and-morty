@@ -50,7 +50,6 @@ const Breadcrumbs: React.FC = () => {
         })}
       </ol>
     </nav>
-
   );
 };
 

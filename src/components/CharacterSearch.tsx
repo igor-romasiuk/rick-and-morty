@@ -24,7 +24,7 @@ export default function CharacterSearch({ initialQuery }: CharacterSearchProps) 
   };
 
   return (
-    <div className="flex justify-center items-center p-4">
+    <div className="flex justify-center items-center">
       <div className="relative w-full">
         <input
           type="text"

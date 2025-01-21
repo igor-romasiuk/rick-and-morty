@@ -22,7 +22,7 @@ export default async function EpisodesPage({
   const response = await fetch(apiUrl);
   const data = await response.json();
 
-  const totalPages = data.info ? Math.ceil(data.info.count) : 1;
+  const totalPages = data.info ? Math.ceil(data.info.count / 20) : 1;
   const episodes = data.results?.slice(0) || [];
   const paginationRange = getPaginationRange(currentPage, totalPages);
 

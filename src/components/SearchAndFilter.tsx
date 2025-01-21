@@ -41,7 +41,6 @@ const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
     <div>
       <div className="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-10 mb-6">
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 items-center">
-          {/* Search by name input */}
           <div className="relative w-full sm:w-auto">
             <input
               type="text"
@@ -68,7 +67,6 @@ const SearchAndFilter: React.FC<SearchAndFilterProps> = ({
             </svg>
           </div>
 
-          {/* Filter by air date input */}
           <div className="relative w-full sm:w-auto">
             <input
               type="text"
