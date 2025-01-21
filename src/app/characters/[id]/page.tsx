@@ -2,9 +2,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Link from "next/link";
 import Image from 'next/image';
 
-export default async function CharacterPage(props: { params: { id: string } }) {
-  const params = await props.params;
-
+export default async function CharacterPage({ params }: { params: { id: string } }) {
   const response = await fetch(
     `https://rickandmortyapi.com/api/character/${params.id}`
   );
