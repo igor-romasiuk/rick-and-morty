@@ -2,6 +2,14 @@
 const nextConfig = {
   output: 'export',
   images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'rickandmortyapi.com',
+        pathname: '/api/**',
+      },
+    ],
+    domains: ['rickandmortyapi.com'],
     unoptimized: true,
   },
   basePath: '/rick-and-morty',
