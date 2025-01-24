@@ -4,11 +4,11 @@ import SearchAndFilter from '@/components/SearchAndFilter';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
 interface EpisodesPageProps {
-  searchParams: {
+  searchParams: Promise<{
     page?: string;
     query?: string;
     air_date?: string;
-  };
+  }>;
 }
 
 export default async function EpisodesPage({

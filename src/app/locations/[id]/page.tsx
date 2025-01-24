@@ -3,11 +3,13 @@ import Link from "next/link";
 import Image from 'next/image';
 import { Character } from "@/types/Character";
 
-export default async function LocationPage(props: { params: { id: string } }) {
-  const params = await props.params;
+export default async function LocationPage(props: { 
+  params: Promise<{ id: string }> 
+}) {
+  const { id } = await props.params;
 
   const response = await fetch(
-    `https://rickandmortyapi.com/api/location/${params.id}`
+    `https://rickandmortyapi.com/api/location/${id}`
   );
 
   if (!response.ok) {

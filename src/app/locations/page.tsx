@@ -4,12 +4,12 @@ import SearchAndFilterLocations from "@/components/SearchAndFilterLocations";
 import Breadcrumbs from "@/components/Breadcrumbs";
 
 interface LocationsPageProps {
-  searchParams: {
+  searchParams: Promise<{
     page?: string;
     query?: string;
     type?: string;
     dimension?: string;
-  };
+  }>;
 }
 
 interface Location {
@@ -20,10 +20,11 @@ interface Location {
 export default async function LocationsPage({
   searchParams,
 }: LocationsPageProps) {
-  const page = searchParams?.page ?? "1";
-  const query = searchParams?.query ?? "";
-  const type = searchParams?.type ?? "";
-  const dimension = searchParams?.dimension ?? "";
+  const params = await searchParams;
+  const page = params?.page ?? "1";
+  const query = params?.query ?? "";
+  const type = params?.type ?? "";
+  const dimension = params?.dimension ?? "";
   
   const currentPage = Number(page);
 

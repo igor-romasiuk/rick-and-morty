@@ -8,7 +8,11 @@ const nextConfig = {
         pathname: '/api/character/avatar/**',
       },
     ],
+    domains: ['rickandmortyapi.com'],
   },
+  // Remove experimental features
+  poweredByHeader: false,
+  reactStrictMode: true,
 }
 
 module.exports = nextConfig 

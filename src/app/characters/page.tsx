@@ -7,21 +7,20 @@ import CharacterFilter from '@/components/CharacterFilter';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Image from 'next/image';
 
-interface CharactersPageProps {
-  searchParams: {
+export default async function CharactersPage({
+  searchParams,
+}: {
+  searchParams: Promise<{
     page?: string;
     limit?: string;
     query?: string;
     status?: string;
     species?: string;
     gender?: string;
-  };
-}
-
-export default async function CharactersPage({
-  searchParams,
-}: CharactersPageProps) {
-  const { page = '1', limit = '20', query = '', status = '', species = '', gender = '' } = await searchParams;
+  }>;
+}) {
+  const params = await searchParams;
+  const { page = '1', limit = '20', query = '', status = '', species = '', gender = '' } = params;
   const currentPage = Number(page);
   const pageLimit = Number(limit);
 

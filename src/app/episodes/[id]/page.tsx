@@ -3,7 +3,9 @@ import Link from "next/link";
 import Image from 'next/image';
 import { Character } from "@/types/Character";
 
-export default async function EpisodePage(props: { params: { id: string } }) {
+export default async function EpisodePage(props: { 
+  params: Promise<{ id: string }> 
+}) {
   const params = await props.params;
 
   const response = await fetch(
