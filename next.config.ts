@@ -5,7 +5,9 @@ const nextConfig = {
     unoptimized: true,
   },
   basePath: '/rick-and-morty',
-  assetPrefix: '/rick-and-morty'
+  assetPrefix: '/rick-and-morty',
+  generateStaticParams: true,
+  trailingSlash: true,
 }
 
 module.exports = nextConfig

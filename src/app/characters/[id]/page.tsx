@@ -2,6 +2,12 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Link from "next/link";
 import Image from 'next/image';
 
+export async function generateStaticParams() {
+  return Array.from({ length: 20 }, (_, i) => ({
+    id: String(i + 1),
+  }))
+}
+
 export default async function CharacterPage(params: {
   params: Promise<{ id: string }>;
 }) {
