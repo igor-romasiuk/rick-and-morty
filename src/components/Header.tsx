@@ -34,7 +34,7 @@ export default function Header() {
           className="absolute left-1/2 transform -translate-x-1/2 md:static md:transform-none"
         >
           <Image
-            src="/logo.svg"
+            src="logo.svg"
             alt="Rick and Morty Logo"
             width={160}
             height={47}

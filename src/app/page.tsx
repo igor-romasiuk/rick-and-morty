@@ -61,7 +61,7 @@ export default function Home() {
             </div>
             
             <Image 
-              src="/home.png" 
+              src="home.png" 
               alt="Rick and Morty Portal"
               className="relative z-10 w-full h-full object-contain 
                        animate__animated animate__fadeIn animate__delay-1s

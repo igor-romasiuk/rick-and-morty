@@ -10,17 +10,16 @@ import Image from 'next/image';
 export default async function CharactersPage({
   searchParams,
 }: {
-  searchParams: Promise<{
+  searchParams: {
     page?: string;
     limit?: string;
     query?: string;
     status?: string;
     species?: string;
     gender?: string;
-  }>;
+  };
 }) {
-  const params = await searchParams;
-  const { page = '1', limit = '20', query = '', status = '', species = '', gender = '' } = params;
+  const { page = '1', limit = '20', query = '', status = '', species = '', gender = '' } = searchParams;
   const currentPage = Number(page);
   const pageLimit = Number(limit);
 

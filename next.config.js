@@ -1,16 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'rickandmortyapi.com',
-        pathname: '/api/character/avatar/**',
+        pathname: '/api/**',
       },
     ],
-    domains: ['rickandmortyapi.com'],
   },
-  // Remove experimental features
+  basePath: '/rick-and-morty',
+  trailingSlash: true,
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   poweredByHeader: false,
   reactStrictMode: true,
 }

@@ -3,16 +3,20 @@ import Link from "next/link";
 import Image from 'next/image';
 import { Character } from "@/types/Character";
 
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
 export async function generateStaticParams() {
   return Array.from({ length: 20 }, (_, i) => ({
     id: String(i + 1),
   }))
 }
 
-export default async function LocationPage(props: { 
-  params: Promise<{ id: string }> 
-}) {
-  const { id } = await props.params;
+export default async function LocationPage({ params }: PageProps) {
+  const { id } = params;
 
   const response = await fetch(
     `https://rickandmortyapi.com/api/location/${id}`

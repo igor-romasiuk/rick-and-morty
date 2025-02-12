@@ -2,16 +2,20 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import Link from "next/link";
 import Image from 'next/image';
 
+interface PageProps {
+  params: {
+    id: string;
+  };
+}
+
 export async function generateStaticParams() {
   return Array.from({ length: 20 }, (_, i) => ({
     id: String(i + 1),
   }))
 }
 
-export default async function CharacterPage(params: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params.params;
+export default async function CharacterPage({ params }: PageProps) {
+  const { id } = params;
   const response = await fetch(
     `https://rickandmortyapi.com/api/character/${id}`
   );

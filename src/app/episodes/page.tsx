@@ -4,17 +4,17 @@ import SearchAndFilter from '@/components/SearchAndFilter';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
 interface EpisodesPageProps {
-  searchParams: Promise<{
+  searchParams: {
     page?: string;
     query?: string;
     air_date?: string;
-  }>;
+  };
 }
 
 export default async function EpisodesPage({
   searchParams,
 }: EpisodesPageProps) {
-  const { page = '1', query = '', air_date = '' } = await searchParams;
+  const { page = '1', query = '', air_date = '' } = searchParams;
   const currentPage = Number(page);
 
   const apiUrl = `https://rickandmortyapi.com/api/episode/?name=${query}&air_date=${air_date}&page=${currentPage}`;
