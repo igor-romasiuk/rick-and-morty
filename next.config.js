@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -11,13 +10,12 @@ const nextConfig = {
       },
     ],
   },
-  basePath: '/rick-and-morty',
   trailingSlash: true,
   typescript: {
     ignoreBuildErrors: true,
   },
   poweredByHeader: false,
-  reactStrictMode: true,
+  reactStrictMode: false,
 }
 
 module.exports = nextConfig 
