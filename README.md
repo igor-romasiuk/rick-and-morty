@@ -1,7 +1,5 @@
 # Rick and Morty Adventure 🌌
 
-![Rick and Morty Adventure](https://rick-and-morty-eight-cyan.vercel.app/images/home.png)
-
 A dynamic **Next.js** application that brings the exciting universe of *Rick and Morty* to life! Explore characters, locations, and episodes from the beloved animated series. Live demo: [rick-and-morty-eight-cyan.vercel.app](https://rick-and-morty-eight-cyan.vercel.app)
 
 ## ✨ Features
