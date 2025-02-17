@@ -7,19 +7,20 @@ import CharacterFilter from '@/components/CharacterFilter';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Image from 'next/image';
 
-export default async function CharactersPage({
+export default async function Page({
   searchParams,
 }: {
-  searchParams: {
-    page?: string;
-    limit?: string;
-    query?: string;
-    status?: string;
-    species?: string;
-    gender?: string;
-  };
+  searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  const { page = '1', limit = '20', query = '', status = '', species = '', gender = '' } = searchParams;
+  const params = await Promise.resolve(searchParams);
+  
+  const page = typeof params.page === 'string' ? params.page : '1';
+  const limit = typeof params.limit === 'string' ? params.limit : '20';
+  const query = typeof params.query === 'string' ? params.query : '';
+  const status = typeof params.status === 'string' ? params.status : '';
+  const species = typeof params.species === 'string' ? params.species : '';
+  const gender = typeof params.gender === 'string' ? params.gender : '';
+
   const currentPage = Number(page);
   const pageLimit = Number(limit);
 
