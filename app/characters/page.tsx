@@ -15,7 +15,7 @@ interface SearchParams {
 }
 
 interface Props {
-  searchParams: SearchParams
+  searchParams: Promise<SearchParams>
 }
 
 export default async function CharactersPage({ searchParams }: Props) {
