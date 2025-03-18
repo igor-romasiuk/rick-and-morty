@@ -4,7 +4,7 @@ import { FeaturedCharacters } from "@/components/home/FeaturedCharacters"
 import { LatestEpisodes } from "@/components/home/LatestEpisodes"
 import { FeaturedLocations } from "@/components/home/FeaturedLocations"
 import { getServerSession } from "next-auth/next"
-import { authOptions } from "@/app/api/auth/[...nextauth]/route"
+import { authOptions } from "@/app/api/auth/options"
 
 export default async function Home() {
   const session = await getServerSession(authOptions)

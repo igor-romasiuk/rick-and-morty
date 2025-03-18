@@ -1,4 +1,3 @@
-import { Skeleton } from "@/components/ui/skeleton"
 import { characterService } from "@/services/api"
 import { CharacterDetails } from "./CharacterDetails"
 import Link from "next/link"
@@ -9,7 +8,7 @@ interface Props {
 }
 
 export default async function CharacterDetailPage({ params }: Props) {
-  const { id } = await params
+  const { id } = params
 
   try {
     const character = await characterService.getCharacter(id)
