@@ -2,7 +2,7 @@ import Link from "next/link"
 import { episodeService } from "@/services/api"
 import { EpisodeDetails } from "./EpisodeDetails"
 
-export default async function EpisodeDetailPage({ params }: { params: { id: string } }) {
+export default async function EpisodeDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const episode = await episodeService.getEpisode(id)
   const characters = await episodeService.getEpisodeCharacters(episode.characters)

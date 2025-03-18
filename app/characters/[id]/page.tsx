@@ -4,11 +4,11 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
 interface Props {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 export default async function CharacterDetailPage({ params }: Props) {
-  const { id } = params
+  const { id } = await params
 
   try {
     const character = await characterService.getCharacter(id)

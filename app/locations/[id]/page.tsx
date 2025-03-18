@@ -3,7 +3,7 @@ import { locationService } from "@/services/api"
 import { CharacterCard } from "@/components/characters/character-card"
 import { LocationDetails } from "./LocationDetails"
 
-export default async function LocationDetailPage({ params }: { params: { id: string } }) {
+export default async function LocationDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const location = await locationService.getLocation(id)
   const residents = await locationService.getLocationResidents(location.residents)
