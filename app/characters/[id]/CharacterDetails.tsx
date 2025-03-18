@@ -54,9 +54,7 @@ export function CharacterDetails({ character, episodes }: CharacterDetailsProps)
             <CharacterImage
               image={character.image}
               name={character.name}
-              isFav={isFav}
               showFavorite={!!session?.user}
-              onFavoriteClick={handleFavoriteClick}
               characterId={character.id}
             />
           </div>

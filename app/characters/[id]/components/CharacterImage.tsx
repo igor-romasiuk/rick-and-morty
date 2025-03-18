@@ -22,7 +22,10 @@ export function CharacterImage({ image, name, showFavorite, characterId }: Chara
       
       {showFavorite && characterId && (
         <div className="absolute top-2 right-2">
-          <FavoriteButton type="characters" id={characterId} />
+          <FavoriteButton 
+            type="characters" 
+            id={characterId} 
+          />
         </div>
       )}
     </div>
