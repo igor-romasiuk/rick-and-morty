@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Menu } from "lucide-react"
@@ -10,13 +10,30 @@ import { motion, AnimatePresence } from "framer-motion"
 import { DesktopNavigation } from "./header/desktop-navigation"
 import { UserMenu } from "./header/user-menu"
 import { MobileMenu } from "./header/mobile-menu"
+import { type User } from "@/components/auth/auth-context"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const { data: session, status } = useSession()
   const isLoading = status === "loading"
-  const user = session?.user
+  
+  const user = useMemo(() => {
+    if (!session?.user) return null;
+    
+    return {
+      id: session.user.id as string,
+      name: session.user.name || "",
+      email: session.user.email || "",
+      image: session.user.image || undefined,
+      favorites: {
+        characters: [],
+        episodes: [],
+        locations: []
+      }
+    } as User;
+  }, [session]);
+  
   const [menuHeight, setMenuHeight] = useState("100%")
 
   useEffect(() => {
