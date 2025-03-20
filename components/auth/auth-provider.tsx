@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { signIn, signOut, useSession } from "next-auth/react"
 import { AuthContext, type User } from "./auth-context"
@@ -14,6 +14,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   const { data: session, status } = useSession()
   const [user, setUser] = useState<User | null>(null)
+  const hasFetchedFavorites = useRef(false);
 
   useEffect(() => {
     if (status === "loading") {
@@ -35,40 +36,40 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           locations: []
         }
       })
+      hasFetchedFavorites.current = false; // Reset when session changes
     } else {
       setUser(null)
     }
   }, [session, status])
 
   const loadFavorites = useCallback(async () => {
-    if (user && user.id) {
-      try {
-        const response = await fetch('/api/favorites')
+    try {
+      const response = await fetch('/api/favorites')
+      
+      if (response.ok) {
+        const data = await response.json()
         
-        if (response.ok) {
-          const data = await response.json()
+        setUser(prevUser => {
+          if (!prevUser) return null
           
-          setUser(prevUser => {
-            if (!prevUser) return null
-            
-            return {
-              ...prevUser,
-              favorites: {
-                characters: data.characters || [],
-                episodes: data.episodes || [],
-                locations: data.locations || []
-              }
+          return {
+            ...prevUser,
+            favorites: {
+              characters: data.characters || [],
+              episodes: data.episodes || [],
+              locations: data.locations || []
             }
-          })
-        }
-      } catch (error) {
-        console.error("Failed to load favorites:", error)
+          }
+        })
       }
+    } catch (error) {
+      console.error("Failed to load favorites:", error)
     }
-  }, [user]);
+  }, []);
 
   useEffect(() => {
-    if (user?.id) {
+    if (user?.id && !hasFetchedFavorites.current) {
+      hasFetchedFavorites.current = true;
       loadFavorites();
     }
   }, [user?.id, loadFavorites]);
