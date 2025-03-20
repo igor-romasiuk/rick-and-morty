@@ -4,18 +4,19 @@ import { useRef } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { X, User, LogIn, LogOut } from "lucide-react"
+import { X, User as UserIcon, LogIn, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { navigationItems } from "./navigation-items"
 import { menuVariants, containerVariants, overlayVariants } from "./animations"
+import { type User } from "@/components/auth/auth-context"
 
 interface MobileMenuProps {
   isMenuOpen: boolean
   setIsMenuOpen: (isOpen: boolean) => void
   menuHeight: string
-  user: any
+  user: User | null
   handleLogout: () => void
 }
 
@@ -164,7 +165,7 @@ export function MobileMenu({
                     className="flex items-center w-full px-4 py-2 text-left text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    <User className="mr-2 h-4 w-4" />
+                    <UserIcon className="mr-2 h-4 w-4" />
                     Profile
                   </Link>
                 </motion.div>

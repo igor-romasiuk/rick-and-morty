@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import { User, LogIn, LogOut } from "lucide-react"
+import { User as UserIcon, LogIn, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
@@ -12,9 +12,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { type User } from "@/components/auth/auth-context"
 
 interface UserMenuProps {
-  user: any | null
+  user: User | null
   handleLogout: () => void
 }
 
@@ -66,7 +67,7 @@ export function UserMenu({ user, handleLogout }: UserMenuProps) {
         <DropdownMenuSeparator className="bg-gray-200 dark:bg-green-500/20" />
         <DropdownMenuItem asChild>
           <Link href="/profile" className="cursor-pointer flex items-center text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
-            <User className="mr-2 h-4 w-4" />
+            <UserIcon className="mr-2 h-4 w-4" />
             <span>Profile</span>
           </Link>
         </DropdownMenuItem>

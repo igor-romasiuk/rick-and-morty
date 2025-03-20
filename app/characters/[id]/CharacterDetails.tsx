@@ -1,48 +1,41 @@
 "use client"
 
-import { useFavorites } from "@/components/providers/favorites-provider"
-import { useToast } from "@/components/ui/use-toast"
 import { CharacterBreadcrumbs } from "./components/CharacterBreadcrumbs"
 import { CharacterImage } from "./components/CharacterImage"
 import { CharacterInfo } from "./components/CharacterInfo"
 import { EpisodesList } from "./components/EpisodesList"
 import { useSession } from "next-auth/react"
 
+interface Location {
+  name: string
+  url: string
+}
+
+interface Character {
+  id: number
+  name: string
+  status: string
+  species: string
+  gender: string
+  origin: Location
+  location: Location
+  image: string
+}
+
+interface Episode {
+  id: number
+  name: string
+  air_date: string
+  episode: string
+}
+
 interface CharacterDetailsProps {
-  character: any
-  episodes: any[]
+  character: Character
+  episodes: Episode[]
 }
 
 export function CharacterDetails({ character, episodes }: CharacterDetailsProps) {
   const { data: session } = useSession()
-  const { addToFavorites, removeFromFavorites, isFavorite } = useFavorites()
-  const { toast } = useToast()
-  const isFav = session?.user ? isFavorite("characters", character.id) : false
-
-  const handleFavoriteClick = () => {
-    if (!session?.user) {
-      toast({
-        title: "Authentication required",
-        description: "Please login to add favorites",
-        variant: "destructive",
-      })
-      return
-    }
-
-    if (isFav) {
-      removeFromFavorites("characters", character.id)
-      toast({
-        title: "Removed from favorites",
-        description: `${character.name} has been removed from your favorites`,
-      })
-    } else {
-      addToFavorites("characters", character.id)
-      toast({
-        title: "Added to favorites",
-        description: `${character.name} has been added to your favorites`,
-      })
-    }
-  }
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -67,7 +60,6 @@ export function CharacterDetails({ character, episodes }: CharacterDetailsProps)
               gender={character.gender}
               location={character.location}
               origin={character.origin}
-              characterId={character.id}
             />
           </div>
         </div>

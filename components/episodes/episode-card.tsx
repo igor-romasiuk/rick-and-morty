@@ -1,8 +1,6 @@
 "use client"
 
 import type React from "react"
-
-import { useState } from "react"
 import Link from "next/link"
 import { FavoriteButton } from "@/components/ui/favorite-button"
 
@@ -11,15 +9,12 @@ type EpisodeCardProps = {
   name: string
   airDate: string
   episode: string
-  index?: number
   showFavoriteButton?: boolean
 }
 
-export function EpisodeCard({ id, name, airDate, episode, index = 0, showFavoriteButton = false }: EpisodeCardProps) {
-  const [isHovered, setIsHovered] = useState(false)
-
+export function EpisodeCard({ id, name, airDate, episode, showFavoriteButton = false }: EpisodeCardProps) {
   return (
-    <Link href={`/episodes/${id}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+    <Link href={`/episodes/${id}`}>
       <div className="bg-green-50/50 dark:bg-green-900/20 border border-green-200 dark:border-green-500/30 rounded-lg p-6 hover:border-green-500 dark:hover:border-green-400 transition-all hover:shadow-lg dark:hover:shadow-[0_0_15px_rgba(74,222,128,0.3)] h-full flex flex-col relative">
         {showFavoriteButton && (
           <div className="absolute top-2 right-2 z-10">

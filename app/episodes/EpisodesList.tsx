@@ -5,12 +5,25 @@ import { useSession } from "next-auth/react"
 import { EpisodeCard } from "@/components/episodes/episode-card"
 import { Pagination } from "@/components/pagination"
 
+interface Episode {
+  id: number
+  name: string
+  air_date: string
+  episode: string
+}
+
+interface ApiParams {
+  page: number
+  name?: string
+  episode?: string
+}
+
 interface EpisodesListProps {
-  episodes: any[]
+  episodes: Episode[]
   info: {
     pages: number
   }
-  params: any
+  params: ApiParams
 }
 
 export function EpisodesList({ episodes, info, params }: EpisodesListProps) {

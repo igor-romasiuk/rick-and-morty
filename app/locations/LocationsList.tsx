@@ -5,12 +5,26 @@ import { useSession } from "next-auth/react"
 import { LocationCard } from "@/components/locations/location-card"
 import { Pagination } from "@/components/pagination"
 
+interface Location {
+  id: number
+  name: string
+  type: string
+  dimension: string
+}
+
+interface ApiParams {
+  page: number
+  type?: string
+  dimension?: string
+  name?: string
+}
+
 interface LocationsListProps {
-  locations: any[]
+  locations: Location[]
   info: {
     pages: number
   }
-  params: any
+  params: ApiParams
 }
 
 export function LocationsList({ locations, info, params }: LocationsListProps) {

@@ -51,7 +51,7 @@ export function FavoritesList({
       <div className="bg-white/90 dark:bg-black/60 p-6 rounded-lg shadow-md text-center">
         <h2 className="text-xl font-bold mb-4">Your Favorites</h2>
         <p className="text-gray-600 dark:text-gray-400 mb-4">
-          You haven't added any favorites yet. Explore characters, episodes, and locations to add them to your favorites!
+          You haven&apos;t added any favorites yet. Explore characters, episodes, and locations to add them to your favorites!
         </p>
       </div>
     )
@@ -145,14 +145,13 @@ function renderEpisodesList(isLoading: boolean, episodes: Episode[]) {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {episodes.map((episode, index) => (
+      {episodes.map((episode) => (
         <EpisodeCard
           key={episode.id}
           id={episode.id}
           name={episode.name}
           airDate={episode.air_date}
           episode={episode.episode}
-          index={index}
           showFavoriteButton={true}
         />
       ))}
@@ -183,14 +182,13 @@ function renderLocationsList(isLoading: boolean, locations: Location[]) {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {locations.map((location, index) => (
+      {locations.map((location) => (
         <LocationCard
           key={location.id}
           id={location.id}
           name={location.name}
           type={location.type}
           dimension={location.dimension}
-          index={index}
           showFavoriteButton={true}
         />
       ))}

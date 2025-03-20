@@ -15,7 +15,8 @@ export default async function CharacterDetailPage({ params }: Props) {
     const episodes = await characterService.getCharacterEpisodes(character.episode)
 
     return <CharacterDetails character={character} episodes={episodes} />
-  } catch (error) {
+  } catch (error: unknown) {
+    console.error("Failed to fetch character:", error)
     return (
       <div className="container mx-auto px-4 py-8">
         <div className="bg-black/60 border border-green-500/30 rounded-lg overflow-hidden p-6 md:p-8 text-center">
@@ -23,7 +24,7 @@ export default async function CharacterDetailPage({ params }: Props) {
             Character not found
           </h1>
           <p className="mb-6">
-            The character you're looking for doesn't exist in this dimension.
+            The character you&apos;re looking for doesn&apos;t exist in this dimension.
           </p>
           <Link href="/characters">
             <Button

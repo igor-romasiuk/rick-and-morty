@@ -12,6 +12,13 @@ interface SearchParams {
   name?: string
 }
 
+interface ApiParams {
+  page: number
+  type?: string
+  dimension?: string
+  name?: string
+}
+
 interface Props {
   searchParams: Promise<SearchParams>
 }
@@ -23,7 +30,7 @@ export default async function LocationsPage({ searchParams }: Props) {
   const dimension = params.dimension || ""
   const name = params.name || ""
 
-  const apiParams: any = { page }
+  const apiParams: ApiParams = { page }
   if (type && type !== "all") apiParams.type = type
   if (dimension && dimension !== "all") apiParams.dimension = dimension
   if (name) apiParams.name = name
@@ -53,11 +60,12 @@ export default async function LocationsPage({ searchParams }: Props) {
   )
 }
 
-async function LocationsListWrapper({ params }: { params: any }) {
+async function LocationsListWrapper({ params }: { params: ApiParams }) {
   try {
     const { results: locations, info } = await locationService.getLocations(params)
     return <LocationsList locations={locations} info={info} params={params} />
-  } catch (error: any) {
+  } catch (error: unknown) {
+    console.error("Failed to fetch locations:", error)
     return (
       <div className="text-center py-8">
         <p className="text-red-600 dark:text-red-400 mb-4">Failed to fetch locations</p>

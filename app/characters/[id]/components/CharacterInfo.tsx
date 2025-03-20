@@ -7,7 +7,6 @@ interface CharacterInfoProps {
   gender: string
   location: { name: string; url: string }
   origin: { name: string; url: string }
-  characterId?: number
 }
 
 export function CharacterInfo({
@@ -17,7 +16,6 @@ export function CharacterInfo({
   gender,
   location,
   origin,
-  characterId,
 }: CharacterInfoProps) {
   return (
     <div>

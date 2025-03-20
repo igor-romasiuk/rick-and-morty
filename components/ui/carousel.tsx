@@ -20,7 +20,12 @@ interface CarouselProps {
   fade?: boolean
 }
 
-const PrevArrow = (props: any) => {
+interface ArrowProps {
+  onClick?: React.MouseEventHandler<HTMLButtonElement>
+  className?: string
+}
+
+const PrevArrow = (props: ArrowProps) => {
   const { onClick } = props
   return (
     <button
@@ -33,7 +38,7 @@ const PrevArrow = (props: any) => {
   )
 }
 
-const NextArrow = (props: any) => {
+const NextArrow = (props: ArrowProps) => {
   const { onClick } = props
   return (
     <button
@@ -119,7 +124,7 @@ export function Carousel({
     centerMode: centerMode,
     centerPadding: centerMode ? '60px' : '0',
     fade: fade,
-    beforeChange: (_: any, next: number) => setCurrentSlide(next),
+    beforeChange: (_: number, next: number) => setCurrentSlide(next),
     swipeToSlide: true,
     focusOnSelect: true,
     adaptiveHeight: true,

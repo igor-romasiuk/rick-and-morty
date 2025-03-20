@@ -4,9 +4,24 @@ import { useSession } from "next-auth/react"
 import { CharacterCard } from "@/components/characters/character-card"
 import { FavoriteButton } from "@/components/ui/favorite-button"
 
+interface Character {
+  id: number
+  name: string
+  status: string
+  species: string
+  image: string
+}
+
+interface Episode {
+  id: number
+  name: string
+  air_date: string
+  episode: string
+}
+
 interface EpisodeDetailsProps {
-  episode: any
-  characters: any[]
+  episode: Episode
+  characters: Character[]
 }
 
 export function EpisodeDetails({ episode, characters }: EpisodeDetailsProps) {

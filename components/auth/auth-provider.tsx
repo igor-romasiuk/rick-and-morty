@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import { signIn, signOut, useSession } from "next-auth/react"
 import { AuthContext, type User } from "./auth-context"
@@ -40,36 +40,38 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
   }, [session, status])
 
-  useEffect(() => {
-    const loadFavorites = async () => {
-      if (user && user.id) {
-        try {
-          const response = await fetch('/api/favorites')
+  const loadFavorites = useCallback(async () => {
+    if (user && user.id) {
+      try {
+        const response = await fetch('/api/favorites')
+        
+        if (response.ok) {
+          const data = await response.json()
           
-          if (response.ok) {
-            const data = await response.json()
+          setUser(prevUser => {
+            if (!prevUser) return null
             
-            setUser(prevUser => {
-              if (!prevUser) return null
-              
-              return {
-                ...prevUser,
-                favorites: {
-                  characters: data.characters || [],
-                  episodes: data.episodes || [],
-                  locations: data.locations || []
-                }
+            return {
+              ...prevUser,
+              favorites: {
+                characters: data.characters || [],
+                episodes: data.episodes || [],
+                locations: data.locations || []
               }
-            })
-          }
-        } catch (error) {
-          console.error("Failed to load favorites:", error)
+            }
+          })
         }
+      } catch (error) {
+        console.error("Failed to load favorites:", error)
       }
     }
-    
-    loadFavorites()
-  }, [user?.id])
+  }, [user]);
+
+  useEffect(() => {
+    if (user?.id) {
+      loadFavorites();
+    }
+  }, [user?.id, loadFavorites]);
 
   const login = async (email: string, password: string) => {
     setIsLoading(true)
@@ -87,7 +89,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       router.push("/profile")
       router.refresh()
       return { success: true }
-    } catch (error) {
+    } catch (error: unknown) {
+      console.error("Login error:", error)
       return { success: false, error: "Login failed" }
     } finally {
       setIsLoading(false)
@@ -127,7 +130,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       router.refresh()
       
       return { success: true, message: "Registration successful! Welcome to your profile." }
-    } catch (error) {
+    } catch (error: unknown) {
+      console.error("Registration error:", error)
       return { success: false, error: "Registration failed. Try again later." }
     } finally {
       setIsLoading(false)

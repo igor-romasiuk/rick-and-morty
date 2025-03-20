@@ -1,5 +1,6 @@
 import type React from "react"
 import { Inter, Orbitron } from "next/font/google"
+import Script from "next/script"
 import "./globals.css"
 import Header from "@/components/layout/header"
 import Footer from "@/components/footer"
@@ -24,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${orbitron.variable}`}>
       <head>
-        <script src="/theme.js" />
+        <Script src="/theme.js" strategy="beforeInteractive" />
       </head>
       <body
         className={`${inter.className} bg-gray-50 dark:bg-black min-h-screen flex flex-col transition-colors duration-300`}

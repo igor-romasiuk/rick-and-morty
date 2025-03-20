@@ -14,6 +14,13 @@ interface SearchParams {
   name?: string
 }
 
+interface ApiParams {
+  page: number
+  status?: string
+  species?: string
+  gender?: string
+  name?: string
+}
 interface Props {
   searchParams: Promise<SearchParams>
 }
@@ -26,7 +33,7 @@ export default async function CharactersPage({ searchParams }: Props) {
   const gender = params.gender || ""
   const name = params.name || ""
 
-  const apiParams: any = { page }
+  const apiParams: ApiParams = { page }
   if (status && status !== "all") apiParams.status = status
   if (species && species !== "all") apiParams.species = species
   if (gender && gender !== "all") apiParams.gender = gender
@@ -58,7 +65,7 @@ export default async function CharactersPage({ searchParams }: Props) {
   )
 }
 
-async function CharactersList({ params }: { params: any }) {
+async function CharactersList({ params }: { params: ApiParams }) {
   try {
     const { results: characters, info } = await characterService.getCharacters(params)
 
@@ -105,7 +112,8 @@ async function CharactersList({ params }: { params: any }) {
         />
       </>
     )
-  } catch (error: any) {
+  } catch (error: unknown) {
+    console.error("Failed to fetch characters:", error)
     return (
       <div className="text-center py-8">
         <p className="text-red-600 dark:text-red-400 mb-4">Failed to fetch characters</p>

@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, ReactNode, useState } from "react"
+import { createContext, useContext, ReactNode, useState, useCallback } from "react"
 import { useAuth } from "@/components/auth/auth-provider"
 
 type FavoritesContextType = {
@@ -20,11 +20,11 @@ const FavoritesContext = createContext<FavoritesContextType | null>(null)
 
 export function FavoritesProvider({ children }: { children: ReactNode }) {
   const { addToFavorites, removeFromFavorites, isFavorite, user, isLoading } = useAuth()
-  const [refreshCounter, setRefreshCounter] = useState(0);
+  const [, setRefreshCounter] = useState(0);
   
-  const refreshFavorites = () => {
+  const refreshFavorites = useCallback(() => {
     setRefreshCounter(prev => prev + 1);
-  };
+  }, []);
 
   const wrappedAddToFavorites = async (type: "characters" | "episodes" | "locations", id: number) => {
     await addToFavorites(type, id);
@@ -37,8 +37,7 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
   };
 
   const wrappedIsFavorite = (type: "characters" | "episodes" | "locations", id: number): boolean => {
-    const result = isFavorite(type, id);
-    return result;
+    return isFavorite(type, id);
   };
 
   return (

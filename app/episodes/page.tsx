@@ -1,14 +1,18 @@
 import { Suspense } from "react"
 import Link from "next/link"
 import { episodeService } from "@/services/api"
-import { Pagination } from "@/components/pagination"
 import { EpisodesFilters } from "@/components/episodes/EpisodesFilters"
-import { EpisodeCard } from "@/components/episodes/episode-card"
 import { EpisodesGridSkeleton } from "./loading"
 import { EpisodesList } from "./EpisodesList"
 
 interface SearchParams {
   page?: string
+  name?: string
+  episode?: string
+}
+
+interface ApiParams {
+  page: number
   name?: string
   episode?: string
 }
@@ -23,7 +27,7 @@ export default async function EpisodesPage({ searchParams }: Props) {
   const name = params.name || ""
   const episode = params.episode || ""
 
-  const apiParams: any = { page }
+  const apiParams: ApiParams = { page }
   if (name) apiParams.name = name
   if (episode && episodeService.validateEpisodeCode(episode)) apiParams.episode = episode
 
@@ -51,11 +55,12 @@ export default async function EpisodesPage({ searchParams }: Props) {
   )
 }
 
-async function EpisodesListWrapper({ params }: { params: any }) {
+async function EpisodesListWrapper({ params }: { params: ApiParams }) {
   try {
     const { results: episodes, info } = await episodeService.getEpisodes(params)
     return <EpisodesList episodes={episodes} info={info} params={params} />
-  } catch (error: any) {
+  } catch (error: unknown) {
+    console.error("Failed to fetch episodes:", error)
     return (
       <div className="text-center py-8">
         <p className="text-red-600 dark:text-red-400 mb-4">Failed to fetch episodes</p>

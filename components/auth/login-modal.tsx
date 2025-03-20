@@ -106,7 +106,8 @@ export function LoginModal({ onClose, initialMode = "login", hideToggle = false 
           }
           
           return;
-        } catch (registrationError) {
+        } catch (registrationError: unknown) {
+          console.error("Registration error:", registrationError);
           setError("Registration failed. Please try again.");
           setIsLoading(false);
           return;
@@ -129,10 +130,12 @@ export function LoginModal({ onClose, initialMode = "login", hideToggle = false 
         } else {
           setError("Invalid email or password. Please try again.")
         }
-      } catch (error) {
+      } catch (error: unknown) {
+        console.error("Login attempt error:", error);
         setError("Login failed. Please check your credentials and try again.")
       }
-    } catch (error) {
+    } catch (error: unknown) {
+      console.error("Form submission error:", error);
       setError("An error occurred. Please try again.")
     } finally {
       setIsLoading(false)
@@ -140,7 +143,7 @@ export function LoginModal({ onClose, initialMode = "login", hideToggle = false 
   }
 
   return (
-    <div className="w-full max-w-md p-6 rounded-lg border border-green-500/30 bg-black/90 relative overflow-hidden">
+    <div className="w-full max-w-md p-6 rounded-lg border border-green-500/30 dark:bg-black/90 bg-white/90 relative overflow-hidden">
       <div className="absolute inset-0 z-0 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-green-500/20 via-transparent to-transparent animate-pulse"></div>
         <div className="absolute inset-0 bg-[conic-gradient(from_90deg_at_50%_50%,_var(--tw-gradient-stops))] from-green-500/10 via-transparent to-green-500/10 animate-spin-slow"></div>
@@ -148,7 +151,7 @@ export function LoginModal({ onClose, initialMode = "login", hideToggle = false 
 
       <div className="relative z-10">
         {error && (
-          <div className={`mb-4 p-3 rounded text-sm ${error.includes("successful") || error.includes("created") ? "bg-green-500/20 border border-green-500 text-green-400" : "bg-red-500/20 border border-red-500 text-red-400"}`}>
+          <div className={`mb-4 p-3 rounded text-sm ${error.includes("successful") || error.includes("created") ? "bg-green-500/20 border border-green-500 text-green-700 dark:text-green-400" : "bg-red-500/20 border border-red-500 text-red-700 dark:text-red-400"}`}>
             {error}
           </div>
         )}
@@ -156,7 +159,7 @@ export function LoginModal({ onClose, initialMode = "login", hideToggle = false 
         <form className="space-y-4" onSubmit={handleSubmit}>
           {!isLogin && (
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-green-400">
+              <Label htmlFor="name" className="text-green-700 dark:text-green-400">
                 Name
               </Label>
               <Input
@@ -164,20 +167,20 @@ export function LoginModal({ onClose, initialMode = "login", hideToggle = false 
                 name="name"
                 type="text"
                 placeholder="Your name"
-                className="bg-black/50 border-green-500/50 text-white placeholder:text-gray-500 focus:border-green-400 focus:ring-green-400/20"
+                className="bg-white/50 dark:bg-black/50 border-green-500/50 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-green-400 focus:ring-green-400/20"
                 autoCapitalize="words"
                 autoComplete="name"
                 disabled={isLoading}
                 required
               />
               {formErrors.name && (
-                <p className="text-red-400 text-xs mt-1">{formErrors.name}</p>
+                <p className="text-red-600 dark:text-red-400 text-xs mt-1">{formErrors.name}</p>
               )}
             </div>
           )}
           
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-green-400">
+            <Label htmlFor="email" className="text-green-700 dark:text-green-400">
               Email
             </Label>
             <Input
@@ -185,7 +188,7 @@ export function LoginModal({ onClose, initialMode = "login", hideToggle = false 
               name="email"
               type="email"
               placeholder="rick@example.com"
-              className="bg-black/50 border-green-500/50 text-white placeholder:text-gray-500 focus:border-green-400 focus:ring-green-400/20"
+              className="bg-white/50 dark:bg-black/50 border-green-500/50 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-green-400 focus:ring-green-400/20"
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
@@ -193,12 +196,12 @@ export function LoginModal({ onClose, initialMode = "login", hideToggle = false 
               required
             />
             {formErrors.email && (
-              <p className="text-red-400 text-xs mt-1">{formErrors.email}</p>
+              <p className="text-red-600 dark:text-red-400 text-xs mt-1">{formErrors.email}</p>
             )}
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password" className="text-green-400">
+            <Label htmlFor="password" className="text-green-700 dark:text-green-400">
               Password
             </Label>
             <Input
@@ -206,16 +209,16 @@ export function LoginModal({ onClose, initialMode = "login", hideToggle = false 
               name="password"
               type="password"
               placeholder="Enter your password"
-              className="bg-black/50 border-green-500/50 text-white placeholder:text-gray-500 focus:border-green-400 focus:ring-green-400/20"
+              className="bg-white/50 dark:bg-black/50 border-green-500/50 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-green-400 focus:ring-green-400/20"
               autoComplete={isLogin ? "current-password" : "new-password"}
               disabled={isLoading}
               required
             />
             {formErrors.password && (
-              <p className="text-red-400 text-xs mt-1">{formErrors.password}</p>
+              <p className="text-red-600 dark:text-red-400 text-xs mt-1">{formErrors.password}</p>
             )}
             {!isLogin && (
-              <p className="text-green-400/70 text-xs mt-1">
+              <p className="text-green-700/90 dark:text-green-400/70 text-xs mt-1">
                 Password must be at least 8 characters and include uppercase, lowercase, number, and special character
               </p>
             )}
@@ -223,7 +226,7 @@ export function LoginModal({ onClose, initialMode = "login", hideToggle = false 
 
           {!isLogin && (
             <div className="space-y-2">
-              <Label htmlFor="confirm-password" className="text-green-400">
+              <Label htmlFor="confirm-password" className="text-green-700 dark:text-green-400">
                 Confirm Password
               </Label>
               <Input
@@ -231,13 +234,13 @@ export function LoginModal({ onClose, initialMode = "login", hideToggle = false 
                 name="confirm-password"
                 type="password"
                 placeholder="Confirm your password"
-                className="bg-black/50 border-green-500/50 text-white placeholder:text-gray-500 focus:border-green-400 focus:ring-green-400/20"
+                className="bg-white/50 dark:bg-black/50 border-green-500/50 text-gray-900 dark:text-white placeholder:text-gray-500 focus:border-green-400 focus:ring-green-400/20"
                 autoComplete="new-password"
                 disabled={isLoading}
                 required
               />
               {formErrors.confirmPassword && (
-                <p className="text-red-400 text-xs mt-1">{formErrors.confirmPassword}</p>
+                <p className="text-red-600 dark:text-red-400 text-xs mt-1">{formErrors.confirmPassword}</p>
               )}
             </div>
           )}
@@ -267,7 +270,7 @@ export function LoginModal({ onClose, initialMode = "login", hideToggle = false 
                 setError(null)
                 setFormErrors({})
               }} 
-              className="text-green-400 hover:text-green-300 text-sm"
+              className="text-green-700 hover:text-green-600 dark:text-green-400 dark:hover:text-green-300 text-sm"
               disabled={isLoading}
             >
               {isLogin ? "Need an account? Sign Up" : "Already have an account? Login"}
@@ -275,7 +278,7 @@ export function LoginModal({ onClose, initialMode = "login", hideToggle = false 
           </div>
         )}
 
-        <div className="mt-6 text-center text-xs text-gray-500">
+        <div className="mt-6 text-center text-xs text-gray-600 dark:text-gray-500">
           <p>
             {isLogin
               ? "Wubba Lubba Dub Dub! Login to access all dimensions."
