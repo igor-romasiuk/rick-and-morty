@@ -5,9 +5,13 @@ import { Tv } from "lucide-react"
 import { PortalCard } from "@/components/portal-card"
 import { SciFiButton } from "@/components/sci-fi-button"
 import { Carousel } from "@/components/ui/carousel"
-import { episodeData, Episode } from "@/data/episodeData"
+import { Episode } from "@/types/api"
 
-export function LatestEpisodes() {
+interface LatestEpisodesProps {
+  episodes: Episode[]
+}
+
+export function LatestEpisodes({ episodes }: LatestEpisodesProps) {
   return (
     <section className="section-dark py-16 relative">
       <div className="container mx-auto px-4">
@@ -25,7 +29,7 @@ export function LatestEpisodes() {
             slidesToShow={4}
             centerMode={true}
           >
-            {episodeData.map((episode: Episode) => (
+            {episodes.map((episode: Episode) => (
               <div key={episode.id} className="px-2 py-1">
                 <Link href={`/episodes/${episode.id}`} className="block h-full">
                   <PortalCard
@@ -37,14 +41,14 @@ export function LatestEpisodes() {
                         {episode.name}
                       </h3>
                       <div className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 mb-4">
-                        Episode {episode.id} • {episode.season}
+                        {episode.episode} • {episode.air_date}
                       </div>
                       <p className="text-sm text-gray-700 dark:text-gray-300 mb-5 flex-grow line-clamp-3">
                         Join Rick and Morty on their adventure through dimensions and realities.
                       </p>
                       <div className="flex justify-between items-center mt-auto">
                         <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                          {episode.id <= 11 ? "2013" : "2015"}
+                          {episode.characters.length} Characters
                         </span>
                         <span className="text-xs sm:text-sm font-medium text-green-600 dark:text-green-400">Watch Now</span>
                       </div>

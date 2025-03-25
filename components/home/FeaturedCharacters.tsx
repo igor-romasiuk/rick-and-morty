@@ -4,9 +4,13 @@ import Image from "next/image"
 import Link from "next/link"
 import { SciFiButton } from "@/components/sci-fi-button"
 import { Carousel } from "@/components/ui/carousel"
-import { characterData, Character } from "@/data/characterData"
+import { Character } from "@/types/api"
 
-export function FeaturedCharacters() {
+interface FeaturedCharactersProps {
+  characters: Character[]
+}
+
+export function FeaturedCharacters({ characters }: FeaturedCharactersProps) {
   return (
     <section className="section-light py-16 relative">
       <div className="container mx-auto px-4">
@@ -25,13 +29,13 @@ export function FeaturedCharacters() {
             slidesToShow={5}
             centerMode={true}
           >
-            {characterData.map((character: Character) => (
+            {characters.map((character: Character) => (
               <div key={character.id} className="px-2 py-1">
                 <Link href={`/characters/${character.id}`} className="block h-full">
                   <div className="card group h-[260px] character-card">
                     <div className="aspect-square relative overflow-hidden rounded-lg w-full h-full">
                       <Image
-                        src={`https://rickandmortyapi.com/api/character/avatar/${character.id}.jpeg`}
+                        src={character.image}
                         alt={character.name}
                         width={300}
                         height={300}
@@ -42,7 +46,7 @@ export function FeaturedCharacters() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                       <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
                         <div className="text-white font-bold text-sm sm:text-lg truncate">{character.name}</div>
-                        <div className="text-white/70 text-xs sm:text-sm mt-1">Character #{character.id}</div>
+                        <div className="text-white/70 text-xs sm:text-sm mt-1">{character.species}</div>
                       </div>
                     </div>
                   </div>

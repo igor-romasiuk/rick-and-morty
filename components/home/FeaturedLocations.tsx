@@ -5,9 +5,12 @@ import { Map } from "lucide-react"
 import { PortalCard } from "@/components/portal-card"
 import { SciFiButton } from "@/components/sci-fi-button"
 import { Carousel } from "@/components/ui/carousel"
-import { locationData, Location } from "@/data/locationData"
+import { Location } from "@/types/api"
 
-export function FeaturedLocations() {
+interface FeaturedLocationsProps {
+  locations: Location[]
+}
+export function FeaturedLocations({ locations }: FeaturedLocationsProps) {
   return (
     <section className="section-light py-16 relative">
       <div className="container mx-auto px-4">
@@ -25,7 +28,7 @@ export function FeaturedLocations() {
             slidesToShow={3}
             centerMode={true}
           >
-            {locationData.map((location: Location) => (
+            {locations.map((location: Location) => (
               <div key={location.id} className="px-2 py-1">
                 <Link href={`/locations/${location.id}`} className="block h-full">
                   <PortalCard
@@ -42,14 +45,14 @@ export function FeaturedLocations() {
                         </span>
                       </div>
                       <div className="sm:text-sm font-medium text-purple-600 dark:text-purple-400 mb-4">
-                        {location.dimension}
+                        {location.type}
                       </div>
                       <p className="text-gray-700 dark:text-gray-300 mb-5 flex-grow line-clamp-3">
-                        Explore strange new worlds and meet bizarre creatures from across the multiverse.
+                        {location.dimension}
                       </p>
                       <div className="flex justify-between items-center mt-auto pt-2 border-t border-gray-200 dark:border-gray-700">
                         <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                          Residents: {location.id * 3 + 10}
+                          Residents: {location.residents.length}
                         </span>
                         <span className="text-xs sm:text-sm font-medium text-green-600 dark:text-green-400">Visit Now</span>
                       </div>
