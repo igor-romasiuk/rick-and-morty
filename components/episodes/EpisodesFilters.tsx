@@ -3,6 +3,8 @@
 import { useRouter, useSearchParams } from "next/navigation"
 import { Input } from "@/components/ui/input"
 import { episodeService } from "@/services/api"
+import { useEffect, useState } from "react"
+import { useDebounce } from "../../hooks/use-debounce"
 
 interface EpisodesFiltersProps {
   search: string
@@ -15,30 +17,37 @@ export function EpisodesFilters({
 }: EpisodesFiltersProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const codeError = episodeCode && !episodeService.validateEpisodeCode(episodeCode) ? "Invalid format. Use SXXEXX (e.g., S01E01)" : null
+  const [searchValue, setSearchValue] = useState(search)
+  const [codeValue, setCodeValue] = useState(episodeCode)
+  const debouncedSearch = useDebounce(searchValue, 500)
+  const debouncedCode = useDebounce(codeValue, 500)
+  const codeError = codeValue && !episodeService.validateEpisodeCode(codeValue) ? "Invalid format. Use SXXEXX (e.g., S01E01)" : null
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>, type: "name" | "episode") => {
+  useEffect(() => {
     const params = new URLSearchParams(searchParams.toString())
     params.set("page", "1")
 
-    if (type === "name") {
-      if (e.target.value) {
-        params.set("name", e.target.value)
-      } else {
-        params.delete("name")
-      }
+    if (debouncedSearch) {
+      params.set("name", debouncedSearch)
     } else {
-      const code = e.target.value.toUpperCase()
-      if (code) {
-        if (episodeService.validateEpisodeCode(code)) {
-          params.set("episode", code)
-        }
-      } else {
-        params.delete("episode")
-      }
+      params.delete("name")
+    }
+
+    if (debouncedCode && episodeService.validateEpisodeCode(debouncedCode)) {
+      params.set("episode", debouncedCode)
+    } else {
+      params.delete("episode")
     }
 
     router.push(`/episodes?${params.toString()}`)
+  }, [debouncedSearch, debouncedCode, router, searchParams])
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>, type: "name" | "episode") => {
+    if (type === "name") {
+      setSearchValue(e.target.value)
+    } else {
+      setCodeValue(e.target.value.toUpperCase())
+    }
   }
 
   return (
@@ -48,7 +57,7 @@ export function EpisodesFilters({
           type="text"
           placeholder="Search episodes..."
           className="bg-white dark:bg-black/50 border-green-500/50 text-gray-800 dark:text-white placeholder:text-gray-400 focus:border-green-600 focus:ring-green-600/20"
-          value={search}
+          value={searchValue}
           onChange={(e) => handleSearch(e, "name")}
         />
       </div>
@@ -60,7 +69,7 @@ export function EpisodesFilters({
           className={`bg-white dark:bg-black/50 border-green-500/50 text-gray-800 dark:text-white placeholder:text-gray-400 focus:border-green-600 focus:ring-green-600/20 ${
             codeError ? "border-red-500" : ""
           }`}
-          value={episodeCode}
+          value={codeValue}
           onChange={(e) => handleSearch(e, "episode")}
         />
         {codeError && (

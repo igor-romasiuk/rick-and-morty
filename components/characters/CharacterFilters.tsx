@@ -3,6 +3,8 @@
 import { useRouter, useSearchParams } from "next/navigation"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useEffect, useState } from "react"
+import { useDebounce } from "../../hooks/use-debounce"
 
 interface CharacterFiltersProps {
   search: string
@@ -19,16 +21,22 @@ export function CharacterFilters({
 }: CharacterFiltersProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const [searchValue, setSearchValue] = useState(search)
+  const debouncedSearch = useDebounce(searchValue, 500)
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
     const params = new URLSearchParams(searchParams.toString())
     params.set("page", "1")
-    if (e.target.value) {
-      params.set("name", e.target.value)
+    if (debouncedSearch) {
+      params.set("name", debouncedSearch)
     } else {
       params.delete("name")
     }
     router.push(`/characters?${params.toString()}`)
+  }, [debouncedSearch, router, searchParams])
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value)
   }
 
   const handleFilter = (value: string, type: "status" | "species" | "gender") => {
@@ -50,7 +58,7 @@ export function CharacterFilters({
             type="text"
             placeholder="Search characters..."
             className="bg-white dark:bg-black/50 border-green-500/50 text-gray-800 dark:text-white placeholder:text-gray-400 focus:border-green-600 focus:ring-green-600/20"
-            value={search}
+            value={searchValue}
             onChange={handleSearch}
           />
         </div>
