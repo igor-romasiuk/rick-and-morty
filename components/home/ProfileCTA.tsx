@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import { User } from "lucide-react"
-import { PortalCard } from "@/components/portal-card"
-import { SciFiButton } from "@/components/sci-fi-button"
+import { PortalCard } from "@/components/PortalCard"
+import { SciFiButton } from "@/components/SciFiButton"
 import { motion } from "framer-motion"
 
 interface ProfileCTAProps {

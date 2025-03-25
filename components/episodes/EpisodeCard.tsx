@@ -2,7 +2,7 @@
 
 import type React from "react"
 import Link from "next/link"
-import { FavoriteButton } from "@/components/ui/favorite-button"
+import { FavoriteButton } from "@/components/ui/FavoriteButton"
 
 type EpisodeCardProps = {
   id: number

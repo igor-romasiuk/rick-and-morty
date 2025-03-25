@@ -5,7 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { FavoriteButton } from "@/components/ui/favorite-button"
+import { FavoriteButton } from "@/components/ui/FavoriteButton"
 
 type CharacterCardProps = {
   id: number

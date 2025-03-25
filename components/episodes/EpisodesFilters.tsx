@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter, useSearchParams } from "next/navigation"
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/ui/Input"
 import { episodeService } from "@/services/api"
 import { useEffect, useState } from "react"
 import { useDebounce } from "../../hooks/use-debounce"

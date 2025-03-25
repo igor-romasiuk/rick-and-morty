@@ -1,6 +1,6 @@
 import { Character } from "@/types/api"
-import { CharacterCard } from "@/components/characters/character-card"
-import { Button } from "@/components/ui/button"
+import { CharacterCard } from "@/components/characters/CharacterCard"
+import { Button } from "@/components/ui/Button"
 import { Skeleton } from "@/components/ui/skeleton"
 
 export function CharactersGridSkeleton() {

@@ -1,7 +1,7 @@
 "use client"
 
-import { createContext, useContext, ReactNode, useState, useCallback, useRef } from "react"
-import { useAuth } from "@/components/auth/auth-provider"
+import { createContext, useContext, useState, useCallback, useRef, type ReactNode } from "react"
+import { useAuth } from "@/components/auth/AuthProvider"
 
 type FavoritesContextType = {
   favorites: {

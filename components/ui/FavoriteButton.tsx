@@ -4,9 +4,9 @@ import { useState, useEffect } from "react"
 import { Heart } from "lucide-react"
 import { cn } from "@/utils/styles"
 import { useSession } from "next-auth/react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/Button"
 import { useRouter } from "next/navigation"
-import { useFavorites } from "@/components/providers/favorites-provider"
+import { useFavorites } from "@/components/providers/FavoritesProvider"
 
 interface FavoriteButtonProps {
   type: "characters" | "episodes" | "locations"

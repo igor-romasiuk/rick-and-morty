@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { navigationItems } from "./navigation-items"
+import { navigationItems } from "./NavigationItems"
 
 export function DesktopNavigation() {
   const pathname = usePathname()

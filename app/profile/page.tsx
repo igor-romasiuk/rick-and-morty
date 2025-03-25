@@ -8,7 +8,7 @@ import { ProfileStats } from "@/components/profile/ProfileStats"
 import { FavoritesList } from "@/components/profile/FavoritesList"
 import { ProfileSkeleton } from "@/components/profile/ProfileSkeleton"
 import { characterService, episodeService, locationService } from "@/services/api"
-import { useFavorites } from "@/components/providers/favorites-provider"
+import { useFavorites } from "@/components/providers/FavoritesProvider"
 import type { Character, Episode, Location } from "@/types/api"
 
 export default function ProfilePage() {

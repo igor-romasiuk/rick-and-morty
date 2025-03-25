@@ -1,7 +1,7 @@
 "use client"
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { LoginModal } from "@/components/auth/login-modal"
+import { LoginModal } from "@/components/auth/LoginModal"
 
 export default function LoginPage() {
   return (

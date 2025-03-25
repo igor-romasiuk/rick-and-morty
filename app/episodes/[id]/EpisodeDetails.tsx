@@ -1,8 +1,8 @@
 "use client"
 
 import { useSession } from "next-auth/react"
-import { CharacterCard } from "@/components/characters/character-card"
-import { FavoriteButton } from "@/components/ui/favorite-button"
+import { CharacterCard } from "@/components/characters/CharacterCard"
+import { FavoriteButton } from "@/components/ui/FavoriteButton"
 
 interface Character {
   id: number

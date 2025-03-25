@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { locationService } from "@/services/api"
 import { LocationDetails } from "./LocationDetails"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/Button"
 
 export default async function LocationDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params

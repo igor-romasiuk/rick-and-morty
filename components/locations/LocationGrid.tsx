@@ -1,6 +1,6 @@
 import { Location } from "@/types/api"
-import { LocationCard } from "@/components/locations/location-card"
-import { Button } from "@/components/ui/button"
+import { LocationCard } from "@/components/locations/LocationCard"
+import { Button } from "@/components/ui/Button"
 import { LocationsGridSkeleton } from "@/app/locations/loading"
 
 interface LocationGridProps {

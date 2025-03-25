@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { FavoriteButton } from "@/components/ui/favorite-button"
+import { FavoriteButton } from "@/components/ui/FavoriteButton"
 
 interface CharacterImageProps {
   image: string

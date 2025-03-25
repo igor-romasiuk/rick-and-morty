@@ -1,6 +1,6 @@
 import { Episode } from "@/types/api"
-import { EpisodeCard } from "@/components/episodes/episode-card"
-import { Button } from "@/components/ui/button"
+import { EpisodeCard } from "@/components/episodes/EpisodeCard"
+import { Button } from "@/components/ui/Button"
 import { EpisodesGridSkeleton } from "@/app/episodes/loading"
 
 interface EpisodesGridProps {

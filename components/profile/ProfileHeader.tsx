@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { signOut } from "next-auth/react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/Button"
 
 type User = {
   id?: string

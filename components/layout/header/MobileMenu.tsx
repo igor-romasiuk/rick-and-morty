@@ -5,12 +5,12 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { X, User as UserIcon, LogIn, LogOut } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/Button"
 import { motion } from "framer-motion"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { navigationItems } from "./navigation-items"
-import { menuVariants, containerVariants, overlayVariants } from "./animations"
-import { type User } from "@/components/auth/auth-context"
+import { navigationItems } from "./NavigationItems"
+import { menuVariants, containerVariants, overlayVariants } from "./Animations"
+import { type User } from "@/components/auth/AuthContext"
 
 interface MobileMenuProps {
   isMenuOpen: boolean

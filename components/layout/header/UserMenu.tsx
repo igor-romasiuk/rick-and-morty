@@ -1,8 +1,8 @@
 "use client"
 
 import Link from "next/link"
-import { User as UserIcon, LogIn, LogOut } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { LogOut, User as UserIcon, LogIn } from "lucide-react"
+import { Button } from "@/components/ui/Button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
   DropdownMenu,
@@ -11,8 +11,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { type User } from "@/components/auth/auth-context"
+} from "@/components/ui/DropdownMenu"
+import type { User } from "@/components/auth/AuthContext"
 
 interface UserMenuProps {
   user: User | null

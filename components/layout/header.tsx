@@ -5,12 +5,12 @@ import Link from "next/link"
 import Image from "next/image"
 import { Menu } from "lucide-react"
 import { useSession, signOut } from "next-auth/react"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { ThemeToggle } from "@/components/ThemeToggle"
 import { motion, AnimatePresence } from "framer-motion"
-import { DesktopNavigation } from "./header/desktop-navigation"
-import { UserMenu } from "./header/user-menu"
-import { MobileMenu } from "./header/mobile-menu"
-import { type User } from "@/components/auth/auth-context"
+import { DesktopNavigation } from "@/components/layout/header/DesktopNavigation"
+import { UserMenu } from "@/components/layout/header/UserMenu"
+import { MobileMenu } from "@/components/layout/header/MobileMenu"
+import { type User } from "@/components/auth/AuthContext"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)

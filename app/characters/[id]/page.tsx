@@ -1,7 +1,7 @@
 import { characterService } from "@/services/api"
 import { CharacterDetails } from "./CharacterDetails"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/Button"
 
 interface Props {
   params: Promise<{ id: string }>

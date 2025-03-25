@@ -2,9 +2,9 @@
 
 import Link from "next/link"
 import { Tv } from "lucide-react"
-import { PortalCard } from "@/components/portal-card"
-import { SciFiButton } from "@/components/sci-fi-button"
-import { Carousel } from "@/components/ui/carousel"
+import { PortalCard } from "@/components/PortalCard"
+import { SciFiButton } from "@/components/SciFiButton"
+import { Carousel } from "@/components/ui/Carousel"
 import { Episode } from "@/types/api"
 
 interface LatestEpisodesProps {

@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import { useSession } from "next-auth/react"
-import { LocationCard } from "@/components/locations/location-card"
-import { Pagination } from "@/components/pagination"
+import { LocationCard } from "@/components/locations/LocationCard"
+import { Pagination } from "@/components/Pagination"
 
 interface Location {
   id: number

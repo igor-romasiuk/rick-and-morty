@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import { useSession } from "next-auth/react"
-import { EpisodeCard } from "@/components/episodes/episode-card"
-import { Pagination } from "@/components/pagination"
+import { EpisodeCard } from "@/components/episodes/EpisodeCard"
+import { Pagination } from "@/components/Pagination"
 
 interface Episode {
   id: number

@@ -4,10 +4,10 @@ import type React from "react"
 import { useState, useEffect, useCallback, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { signIn, signOut, useSession } from "next-auth/react"
-import { AuthContext, type User } from "./auth-context"
-import {isFavorite } from "./favorites-utils"
+import { AuthContext, type User } from "./AuthContext"
+import {isFavorite } from "./FavoritesUtils"
 
-export { useAuth } from "./auth-hooks"
+export { useAuth } from "./AuthHooks"
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)
@@ -36,7 +36,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           locations: []
         }
       })
-      hasFetchedFavorites.current = false; // Reset when session changes
+      hasFetchedFavorites.current = false;
     } else {
       setUser(null)
     }

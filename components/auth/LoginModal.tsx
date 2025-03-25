@@ -1,11 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/Button"
+import { Input } from "@/components/ui/Input"
 import { Label } from "@/components/ui/label"
 import { Icons } from "@/components/ui/icons"
-import { useAuth } from "@/components/auth/auth-provider"
+import { useAuth } from "@/components/auth/AuthProvider"
 
 interface LoginModalProps {
   onClose?: () => void

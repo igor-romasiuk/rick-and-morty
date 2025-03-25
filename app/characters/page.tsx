@@ -1,9 +1,9 @@
 import { Suspense } from "react"
 import Link from "next/link"
 import { characterService } from "@/services/api"
-import { Pagination } from "@/components/pagination"
+import { Pagination } from "@/components/Pagination"
 import { CharacterFilters } from "@/components/characters/CharacterFilters"
-import { CharacterCard } from "@/components/characters/character-card"
+import { CharacterCard } from "@/components/characters/CharacterCard"
 import { CharactersGridSkeleton } from "./loading"
 
 interface SearchParams {

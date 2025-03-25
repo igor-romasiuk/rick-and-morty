@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/Button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Skeleton } from "@/components/ui/skeleton"
-import { CharacterCard } from "@/components/characters/character-card"
-import { EpisodeCard } from "@/components/episodes/episode-card"
-import { LocationCard } from "@/components/locations/location-card"
+import { CharacterCard } from "@/components/characters/CharacterCard"
+import { EpisodeCard } from "@/components/episodes/EpisodeCard"
+import { LocationCard } from "@/components/locations/LocationCard"
 import type { Character, Episode, Location } from "@/types/api"
 
 interface FavoritesListProps {
