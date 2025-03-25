@@ -1,4 +1,4 @@
-import type { User } from "./auth-context"
+import type { User } from "./AuthContext"
 
 // Перевіряє, чи є елемент у списку вподобань
 export function isFavorite(
