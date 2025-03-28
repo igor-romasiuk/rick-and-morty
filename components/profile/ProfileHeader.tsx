@@ -3,22 +3,7 @@
 import Image from "next/image"
 import { signOut } from "next-auth/react"
 import { Button } from "@/components/ui/Button"
-
-type User = {
-  id?: string
-  name?: string
-  email?: string
-  image?: string
-  favorites?: {
-    characters: number[]
-    episodes: number[]
-    locations: number[]
-  }
-}
-
-interface ProfileHeaderProps {
-  user: User
-}
+import { ProfileHeaderProps } from "@/types/profile"
 
 export function ProfileHeader({ user }: ProfileHeaderProps) {
   return (

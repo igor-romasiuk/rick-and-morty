@@ -3,26 +3,7 @@
 import { useSession } from "next-auth/react"
 import { CharacterCard } from "@/components/characters/CharacterCard"
 import { FavoriteButton } from "@/components/ui/FavoriteButton"
-
-interface Location {
-  id: number
-  name: string
-  type: string
-  dimension: string
-}
-
-interface Character {
-  id: number
-  name: string
-  status: string
-  species: string
-  image: string
-}
-
-interface LocationDetailsProps {
-  location: Location
-  residents: Character[]
-}
+import { LocationDetailsProps } from "@/types/api"
 
 export function LocationDetails({ location, residents }: LocationDetailsProps) {
   const { data: session } = useSession()

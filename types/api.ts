@@ -57,4 +57,60 @@ export interface APIResponse<T> {
 
 export interface APIError {
   error: string;
+}
+
+export interface SearchParams {
+  page?: string;
+  status?: string;
+  species?: string;
+  gender?: string;
+  name?: string;
+  type?: string;
+  dimension?: string;
+  episode?: string;
+}
+
+export interface ApiParams {
+  page: number;
+  status?: string;
+  species?: string;
+  gender?: string;
+  name?: string;
+  type?: string;
+  dimension?: string;
+  episode?: string;
+}
+
+export interface PaginationInfo {
+  count: number;
+  pages: number;
+  next: string | null;
+  prev: string | null;
+}
+
+export interface LocationDetailsProps {
+  location: Location;
+  residents: Character[];
+}
+
+export interface CharacterDetailsProps {
+  character: Character;
+  episodes: Episode[];
+}
+
+export interface LocationsListProps {
+  locations: Location[];
+  isLoading?: boolean;
+  info: PaginationInfo;
+  params: ApiParams;
+}
+
+export interface EpisodesListProps {
+  episodes: Episode[];
+  isLoading: boolean;
+}
+
+export interface EpisodeDetailsProps {
+  episode: Episode;
+  characters: Character[];
 } 

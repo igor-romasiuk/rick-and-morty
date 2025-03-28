@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
+import { FloatingHead } from "@/types/characters"
 
 const characters = [
   { id: 1, name: "Rick", image: "/characters/rick-head.png" },
@@ -88,20 +89,5 @@ export function FloatingCharacters() {
       ))}
     </div>
   )
-}
-
-interface FloatingHead {
-  id: number
-  name: string
-  image: string
-  x: number
-  y: number
-  size: number
-  speed: {
-    x: number
-    y: number
-  }
-  rotation: number
-  rotationSpeed: number
 }
 

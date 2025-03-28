@@ -1,38 +1,11 @@
 "use client"
 
-import { CharacterBreadcrumbs } from "./components/CharacterBreadcrumbs"
-import { CharacterImage } from "./components/CharacterImage"
-import { CharacterInfo } from "./components/CharacterInfo"
-import { EpisodesList } from "./components/EpisodesList"
+import { CharacterBreadcrumbs } from "@/components/characters/CharacterBreadcrumbs"
+import { CharacterImage } from "@/components/characters/CharacterImage"
+import { CharacterInfo } from "@/components/characters/CharacterInfo"
+import { EpisodesList } from "@/components/characters/EpisodesList"
 import { useSession } from "next-auth/react"
-
-interface Location {
-  name: string
-  url: string
-}
-
-interface Character {
-  id: number
-  name: string
-  status: string
-  species: string
-  gender: string
-  origin: Location
-  location: Location
-  image: string
-}
-
-interface Episode {
-  id: number
-  name: string
-  air_date: string
-  episode: string
-}
-
-interface CharacterDetailsProps {
-  character: Character
-  episodes: Episode[]
-}
+import { CharacterDetailsProps } from "@/types/api"
 
 export function CharacterDetails({ character, episodes }: CharacterDetailsProps) {
   const { data: session } = useSession()

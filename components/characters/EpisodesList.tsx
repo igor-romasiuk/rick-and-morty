@@ -1,15 +1,5 @@
 import Link from "next/link"
-
-interface Episode {
-  id: number
-  name: string
-  episode: string
-  air_date: string
-}
-
-interface EpisodesListProps {
-  episodes: Episode[]
-}
+import { EpisodesListProps } from "@/types/characters"
 
 export function EpisodesList({ episodes }: EpisodesListProps) {
   return (

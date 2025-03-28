@@ -2,13 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/Button"
-
-interface PaginationProps {
-  currentPage: number
-  totalPages: number
-  baseUrl: string
-  query?: Record<string, string>
-}
+import { PaginationProps } from "@/types/common"
 
 export function Pagination({ currentPage, totalPages, baseUrl, query = {} }: PaginationProps) {
   const getPageNumbers = () => {

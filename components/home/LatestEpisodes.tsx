@@ -2,8 +2,8 @@
 
 import Link from "next/link"
 import { Tv } from "lucide-react"
-import { PortalCard } from "@/components/PortalCard"
-import { SciFiButton } from "@/components/SciFiButton"
+import { PortalCard } from "@/components/common/PortalCard"
+import { SciFiButton } from "@/components/common/SciFiButton"
 import { Carousel } from "@/components/ui/Carousel"
 import { Episode } from "@/types/api"
 

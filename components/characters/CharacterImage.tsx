@@ -1,12 +1,6 @@
 import Image from "next/image"
 import { FavoriteButton } from "@/components/ui/FavoriteButton"
-
-interface CharacterImageProps {
-  image: string
-  name: string
-  showFavorite: boolean
-  characterId?: number
-}
+import { CharacterImageProps } from "@/types/characters"
 
 export function CharacterImage({ image, name, showFavorite, characterId }: CharacterImageProps) {
   return (

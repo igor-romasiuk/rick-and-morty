@@ -1,21 +1,11 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { FavoriteButton } from "@/components/ui/FavoriteButton"
-
-type CharacterCardProps = {
-  id: number
-  name: string
-  status: string
-  species: string
-  image: string
-  index?: number
-  showFavoriteButton?: boolean
-}
+import { CharacterCardProps } from "@/types/characters"
 
 export function CharacterCard({
   id,

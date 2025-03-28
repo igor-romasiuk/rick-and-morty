@@ -5,12 +5,7 @@ import { Input } from "@/components/ui/Input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useEffect, useState } from "react"
 import { useDebounce } from "../../hooks/use-debounce"
-
-interface LocationFiltersProps {
-  search: string
-  type: string
-  dimension: string
-}
+import { LocationFiltersProps } from "@/types/locations"
 
 export function LocationFilters({
   search,

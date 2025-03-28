@@ -1,16 +1,8 @@
 "use client"
 
-import type React from "react"
 import Link from "next/link"
 import { FavoriteButton } from "@/components/ui/FavoriteButton"
-
-type EpisodeCardProps = {
-  id: number
-  name: string
-  airDate: string
-  episode: string
-  showFavoriteButton?: boolean
-}
+import { EpisodeCardProps } from "@/types/episodes"
 
 export function EpisodeCard({ id, name, airDate, episode, showFavoriteButton = false }: EpisodeCardProps) {
   return (

@@ -1,7 +1,7 @@
-import { Character } from "@/types/api"
 import { CharacterCard } from "@/components/characters/CharacterCard"
 import { Button } from "@/components/ui/Button"
 import { Skeleton } from "@/components/ui/skeleton"
+import { CharacterGridProps } from "@/types/characters"
 
 export function CharactersGridSkeleton() {
   return (
@@ -18,13 +18,6 @@ export function CharactersGridSkeleton() {
       ))}
     </>
   )
-}
-
-interface CharacterGridProps {
-  isLoading: boolean
-  error: string | null
-  characters: Character[]
-  onClearFilters: () => void
 }
 
 export function CharacterGrid({

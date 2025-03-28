@@ -10,15 +10,7 @@ import { motion } from "framer-motion"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { navigationItems } from "./NavigationItems"
 import { menuVariants, containerVariants, overlayVariants } from "./Animations"
-import { type User } from "@/components/auth/AuthContext"
-
-interface MobileMenuProps {
-  isMenuOpen: boolean
-  setIsMenuOpen: (isOpen: boolean) => void
-  menuHeight: string
-  user: User | null
-  handleLogout: () => void
-}
+import { MobileMenuProps } from "@/types/header"
 
 export function MobileMenu({ 
   isMenuOpen, 

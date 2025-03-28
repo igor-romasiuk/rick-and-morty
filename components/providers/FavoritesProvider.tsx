@@ -1,20 +1,8 @@
 "use client"
 
 import { createContext, useContext, useState, useCallback, useRef, type ReactNode } from "react"
-import { useAuth } from "@/components/auth/AuthProvider"
-
-type FavoritesContextType = {
-  favorites: {
-    characters: number[]
-    episodes: number[]
-    locations: number[]
-  } | null
-  isLoading: boolean
-  addToFavorites: (type: "characters" | "episodes" | "locations", id: number) => Promise<void>
-  removeFromFavorites: (type: "characters" | "episodes" | "locations", id: number) => Promise<void>
-  isFavorite: (type: "characters" | "episodes" | "locations", id: number) => boolean
-  refreshFavorites: () => void
-}
+import { useAuth } from "@/hooks/use-auth"
+import { FavoritesContextType } from "@/types/favorites"
 
 const FavoritesContext = createContext<FavoritesContextType | null>(null)
 

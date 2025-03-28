@@ -5,13 +5,7 @@ import { Input } from "@/components/ui/Input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useEffect, useState } from "react"
 import { useDebounce } from "../../hooks/use-debounce"
-
-interface CharacterFiltersProps {
-  search: string
-  status: string
-  species: string
-  gender: string
-}
+import { CharacterFiltersProps } from "@/types/characters"
 
 export function CharacterFilters({
   search,

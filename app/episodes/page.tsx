@@ -4,18 +4,7 @@ import { episodeService } from "@/services/api"
 import { EpisodesFilters } from "@/components/episodes/EpisodesFilters"
 import { EpisodesGridSkeleton } from "./loading"
 import { EpisodesList } from "./EpisodesList"
-
-interface SearchParams {
-  page?: string
-  name?: string
-  episode?: string
-}
-
-interface ApiParams {
-  page: number
-  name?: string
-  episode?: string
-}
+import { SearchParams, ApiParams } from "@/types/api"
 
 interface Props {
   searchParams: Promise<SearchParams>

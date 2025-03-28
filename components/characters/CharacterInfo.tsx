@@ -1,13 +1,5 @@
 import Link from "next/link"
-
-interface CharacterInfoProps {
-  name: string
-  status: string
-  species: string
-  gender: string
-  location: { name: string; url: string }
-  origin: { name: string; url: string }
-}
+import { CharacterInfoProps } from "@/types/characters"
 
 export function CharacterInfo({
   name,

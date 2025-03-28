@@ -4,20 +4,7 @@ import { locationService } from "@/services/api"
 import { LocationFilters } from "@/components/locations/LocationFilters"
 import { LocationsGridSkeleton } from "./loading"
 import { LocationsList } from "./LocationsList"
-
-interface SearchParams {
-  page?: string
-  type?: string
-  dimension?: string
-  name?: string
-}
-
-interface ApiParams {
-  page: number
-  type?: string
-  dimension?: string
-  name?: string
-}
+import { SearchParams, ApiParams } from "@/types/api"
 
 interface Props {
   searchParams: Promise<SearchParams>

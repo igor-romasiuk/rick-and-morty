@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { Zap, Map } from "lucide-react"
-import { SciFiButton } from "@/components/SciFiButton"
+import { SciFiButton } from "@/components/common/SciFiButton"
 
 export function HeroSection() {
   return (

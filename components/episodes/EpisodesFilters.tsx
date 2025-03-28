@@ -5,11 +5,7 @@ import { Input } from "@/components/ui/Input"
 import { episodeService } from "@/services/api"
 import { useEffect, useState } from "react"
 import { useDebounce } from "../../hooks/use-debounce"
-
-interface EpisodesFiltersProps {
-  search: string
-  episodeCode: string
-}
+import { EpisodesFiltersProps } from "@/types/episodes"
 
 export function EpisodesFilters({
   search,

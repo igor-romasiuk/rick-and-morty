@@ -12,12 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu"
-import type { User } from "@/components/auth/AuthContext"
-
-interface UserMenuProps {
-  user: User | null
-  handleLogout: () => void
-}
+import { UserMenuProps } from "@/types/header"
 
 export function UserMenu({ user, handleLogout }: UserMenuProps) {
   if (!user) {

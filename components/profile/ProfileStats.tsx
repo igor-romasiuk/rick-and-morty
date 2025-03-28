@@ -1,20 +1,6 @@
 "use client"
 
-type User = {
-  id?: string
-  name?: string
-  email?: string
-  image?: string
-  favorites?: {
-    characters: number[]
-    episodes: number[]
-    locations: number[]
-  }
-}
-
-interface ProfileStatsProps {
-  user: User
-}
+import { ProfileStatsProps } from "@/types/profile"
 
 export function ProfileStats({ user }: ProfileStatsProps) {
   const favorites = user.favorites || { characters: [], episodes: [], locations: [] }

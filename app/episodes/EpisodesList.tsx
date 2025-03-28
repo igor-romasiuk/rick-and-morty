@@ -3,28 +3,8 @@
 import Link from "next/link"
 import { useSession } from "next-auth/react"
 import { EpisodeCard } from "@/components/episodes/EpisodeCard"
-import { Pagination } from "@/components/Pagination"
-
-interface Episode {
-  id: number
-  name: string
-  air_date: string
-  episode: string
-}
-
-interface ApiParams {
-  page: number
-  name?: string
-  episode?: string
-}
-
-interface EpisodesListProps {
-  episodes: Episode[]
-  info: {
-    pages: number
-  }
-  params: ApiParams
-}
+import { Pagination } from "@/components/common/Pagination"
+import { EpisodesListProps } from "@/types/rick-morty"
 
 export function EpisodesList({ episodes, info, params }: EpisodesListProps) {
   const { data: session } = useSession()

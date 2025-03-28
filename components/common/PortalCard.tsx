@@ -1,11 +1,5 @@
-import type { ReactNode } from "react"
 import { cn } from "@/utils/styles"
-
-interface PortalCardProps {
-  children: ReactNode
-  className?: string
-  variant?: "green" | "blue" | "purple"
-}
+import { PortalCardProps } from "@/types/common"
 
 export function PortalCard({ children, className, variant = "green" }: PortalCardProps) {
   const colorVariants = {

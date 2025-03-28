@@ -1,14 +1,7 @@
-import { Location } from "@/types/api"
 import { LocationCard } from "@/components/locations/LocationCard"
 import { Button } from "@/components/ui/Button"
 import { LocationsGridSkeleton } from "@/app/locations/loading"
-
-interface LocationGridProps {
-  isLoading: boolean
-  error: string | null
-  locations: Location[]
-  onClearFilters: () => void
-}
+import { LocationGridProps } from "@/types/locations"
 
 export function LocationGrid({
   isLoading,

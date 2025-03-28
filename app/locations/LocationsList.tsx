@@ -3,29 +3,8 @@
 import Link from "next/link"
 import { useSession } from "next-auth/react"
 import { LocationCard } from "@/components/locations/LocationCard"
-import { Pagination } from "@/components/Pagination"
-
-interface Location {
-  id: number
-  name: string
-  type: string
-  dimension: string
-}
-
-interface ApiParams {
-  page: number
-  type?: string
-  dimension?: string
-  name?: string
-}
-
-interface LocationsListProps {
-  locations: Location[]
-  info: {
-    pages: number
-  }
-  params: ApiParams
-}
+import { Pagination } from "@/components/common/Pagination"
+import { LocationsListProps } from "@/types/api"
 
 export function LocationsList({ locations, info, params }: LocationsListProps) {
   const { data: session } = useSession()
@@ -60,7 +39,7 @@ export function LocationsList({ locations, info, params }: LocationsListProps) {
       </div>
 
       <Pagination
-        currentPage={params.page}
+        currentPage={Number(params.page || 1)}
         totalPages={info.pages}
         baseUrl="/locations"
         query={{

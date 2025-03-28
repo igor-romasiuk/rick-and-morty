@@ -5,25 +5,15 @@ import { Button } from "@/components/ui/Button"
 import { Input } from "@/components/ui/Input"
 import { Label } from "@/components/ui/label"
 import { Icons } from "@/components/ui/icons"
-import { useAuth } from "@/components/auth/AuthProvider"
-
-interface LoginModalProps {
-  onClose?: () => void
-  initialMode?: "login" | "register"
-  hideToggle?: boolean
-}
+import { useAuth } from "@/hooks/use-auth"
+import { LoginModalProps, FormErrors } from "@/types/auth"
 
 export function LoginModal({ onClose, initialMode = "login", hideToggle = false }: LoginModalProps) {
   const { login, register } = useAuth()
   const [isLogin, setIsLogin] = useState(initialMode === "login")
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [formErrors, setFormErrors] = useState<{
-    email?: string;
-    password?: string;
-    confirmPassword?: string;
-    name?: string;
-  }>({})
+  const [formErrors, setFormErrors] = useState<FormErrors>({})
 
   function validateEmail(email: string): boolean {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -45,12 +35,7 @@ export function LoginModal({ onClose, initialMode = "login", hideToggle = false 
     setFormErrors({})
     
     let hasErrors = false
-    const newFormErrors: {
-      email?: string;
-      password?: string;
-      confirmPassword?: string;
-      name?: string;
-    } = {}
+    const newFormErrors: FormErrors = {}
 
     try {
       const formData = new FormData(event.currentTarget)

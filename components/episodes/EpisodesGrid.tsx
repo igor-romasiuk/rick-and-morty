@@ -1,14 +1,7 @@
-import { Episode } from "@/types/api"
 import { EpisodeCard } from "@/components/episodes/EpisodeCard"
 import { Button } from "@/components/ui/Button"
 import { EpisodesGridSkeleton } from "@/app/episodes/loading"
-
-interface EpisodesGridProps {
-  isLoading: boolean
-  error: string | null
-  episodes: Episode[]
-  onClearSearch: () => void
-}
+import { EpisodesGridProps } from "@/types/episodes"
 
 export function EpisodesGrid({
   isLoading,

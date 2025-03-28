@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { SciFiButton } from "@/components/SciFiButton"
+import { SciFiButton } from "@/components/common/SciFiButton"
 import { Carousel } from "@/components/ui/Carousel"
 import { Character } from "@/types/api"
 

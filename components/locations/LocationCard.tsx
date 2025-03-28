@@ -1,16 +1,8 @@
 "use client"
 
-import type React from "react"
 import Link from "next/link"
 import { FavoriteButton } from "@/components/ui/FavoriteButton"
-
-type LocationCardProps = {
-  id: number
-  name: string
-  type: string
-  dimension: string
-  showFavoriteButton?: boolean
-}
+import { LocationCardProps } from "@/types/locations"
 
 export function LocationCard({ id, name, type, dimension, showFavoriteButton = false }: LocationCardProps) {
   return (
