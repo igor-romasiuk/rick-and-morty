@@ -57,7 +57,7 @@ export function FeaturedCharacters({ characters }: FeaturedCharactersProps) {
         </div>
 
         <div className="text-center mt-12">
-          <Link href="/characters">
+          <Link href="/characters" className="inline-block">
             <SciFiButton variant="outline" className="hover:scale-105 transition-transform duration-200 hover:brightness-110">
               View All Characters
             </SciFiButton>

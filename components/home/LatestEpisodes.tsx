@@ -61,7 +61,7 @@ export function LatestEpisodes({ episodes }: LatestEpisodesProps) {
         </div>
 
         <div className="text-center mt-12">
-          <Link href="/episodes">
+          <Link href="/episodes" className="inline-block">
             <SciFiButton variant="outline" className="hover:scale-105 transition-transform duration-200 hover:brightness-110">
               <Tv className="mr-2 h-4 w-4" />
               View All Episodes

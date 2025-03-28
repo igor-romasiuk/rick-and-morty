@@ -26,4 +26,5 @@ export interface SciFiButtonProps extends ButtonHTMLAttributes<HTMLButtonElement
   variant?: "primary" | "secondary" | "outline" | "danger" | "success"
   size?: "sm" | "md" | "lg"
   glowing?: boolean
+  asChild?: boolean
 } 

@@ -9,12 +9,12 @@ export function SciFiButton({
   glowing = false,
   ...props
 }: SciFiButtonProps) {
-  const baseStyles = "relative inline-flex items-center justify-center font-medium transition-all duration-200 rounded-lg overflow-hidden"
+  const baseStyles = "relative inline-flex items-center justify-center font-medium transition-all duration-200 rounded-lg overflow-hidden cursor-pointer"
   
   const variants = {
-    primary: "bg-blue-500 text-white hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700",
-    secondary: "bg-gray-500 text-white hover:bg-gray-600 dark:bg-gray-600 dark:hover:bg-gray-700",
-    outline: "bg-transparent hover:bg-green-500/10 text-green-500 dark:text-green-400 border-green-500 dark:border-green-400",
+    primary: "bg-green-500 text-white hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700",
+    secondary: "bg-purple-500 text-white hover:bg-purple-600 dark:bg-purple-600 dark:hover:bg-purple-700",
+    outline: "bg-transparent hover:bg-green-500/10 text-green-500 dark:text-green-400 border border-green-500 dark:border-green-400",
     danger: "bg-red-500 text-white hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700",
     success: "bg-green-500 text-white hover:bg-green-600 dark:bg-green-600 dark:hover:bg-green-700",
   }
@@ -32,16 +32,19 @@ export function SciFiButton({
         variants[variant],
         sizes[size],
         glowing && "animate-pulse shadow-lg",
-        glowing && variant === "primary" && "shadow-blue-500/50",
-        glowing && variant === "secondary" && "shadow-gray-500/50",
+        glowing && variant === "primary" && "shadow-green-500/50",
+        glowing && variant === "secondary" && "shadow-purple-500/50",
         glowing && variant === "danger" && "shadow-red-500/50",
         glowing && variant === "success" && "shadow-green-500/50",
+        "hover:scale-105",
+        "before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/30 before:to-transparent before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-200",
+        "cursor-pointer",
+        "w-full",
         className
       )}
       {...props}
     >
-      <span className="relative z-10">{children}</span>
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-200" />
+      <span className="relative z-10 w-full text-center">{children}</span>
     </button>
   )
 }

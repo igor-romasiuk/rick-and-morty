@@ -1,6 +1,5 @@
 "use client"
 
-import Link from "next/link"
 import { User } from "lucide-react"
 import { PortalCard } from "@/components/common/PortalCard"
 import { SciFiButton } from "@/components/common/SciFiButton"
@@ -41,24 +40,20 @@ export function ProfileCTA({ user }: ProfileCTAProps) {
                 </p>
               </motion.div>
 
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                <Link href="/profile">
-                  <SciFiButton variant="primary" className="whitespace-nowrap">
-                    <User className="mr-2 h-4 w-4" />
-                    Go to Profile
-                  </SciFiButton>
-                </Link>
-              </motion.div>
+              <div className="w-full sm:w-auto">
+                <SciFiButton 
+                  variant="primary" 
+                  className="whitespace-nowrap"
+                  onClick={() => window.location.href = '/profile'}
+                >
+                  <User className="mr-2 h-4 w-4" />
+                  Go to Profile
+                </SciFiButton>
+              </div>
             </div>
             
             <motion.div 
-              className="absolute -top-20 -right-20 w-40 h-40 bg-green-500/5 dark:bg-green-500/5 rounded-full blur-3xl"
+              className="absolute -top-20 -right-20 w-40 h-40 bg-green-500/5 dark:bg-green-500/5 rounded-full blur-3xl -z-10"
               animate={{ 
                 scale: [1, 1.2, 1],
                 opacity: [0.3, 0.5, 0.3]

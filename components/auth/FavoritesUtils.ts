@@ -1,6 +1,5 @@
 import type { User } from "./AuthContext"
 
-// Перевіряє, чи є елемент у списку вподобань
 export function isFavorite(
   user: User | null,
   type: "characters" | "episodes" | "locations",
@@ -10,7 +9,6 @@ export function isFavorite(
   return user.favorites?.[type]?.includes(id) || false
 }
 
-// Тепер ці функції не потрібні, оскільки вони замінені на API-виклики в auth-provider.tsx
 export async function addToFavorites(
   user: User | null,
   setUser: React.Dispatch<React.SetStateAction<User | null>>,
