@@ -1,6 +1,5 @@
 import type React from "react"
 import { Inter, Orbitron } from "next/font/google"
-import Script from "next/script"
 import "./globals.css"
 import Header from "@/components/layout/Header"
 import Footer from "@/components/layout/Footer"
@@ -10,6 +9,7 @@ import { Toaster } from "@/components/ui/toaster"
 import NextAuthProvider from "@/components/providers/NextAuthProvider"
 import { FavoritesProvider } from "@/components/providers/FavoritesProvider"
 import { AuthProvider } from "@/components/auth/AuthProvider"
+import { ThemeScript } from "@/components/common/ThemeScript"
 import { metadata, viewport } from "./metadata"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${inter.variable} ${orbitron.variable}`}>
       <head>
-        <Script src="/theme.js" strategy="beforeInteractive" />
+        <ThemeScript />
       </head>
       <body
         className={`${inter.className} bg-gray-50 dark:bg-black min-h-screen flex flex-col transition-colors duration-300`}
