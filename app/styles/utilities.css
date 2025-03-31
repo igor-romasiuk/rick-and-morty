@@ -1,0 +1,57 @@
+.heading-sci-fi {
+  @apply font-orbitron tracking-wider;
+}
+
+.text-glow {
+  text-shadow: 0 0 10px currentColor;
+}
+
+.portal-border {
+  @apply relative;
+}
+
+.portal-border::before {
+  content: "";
+  @apply absolute inset-0 rounded-2xl border-2 border-green-500/50 dark:border-green-400/50;
+  animation: portal-pulse 3s infinite;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.profile-cta-gradient {
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.1), rgba(59, 130, 246, 0.1));
+}
+
+.dark .profile-cta-gradient {
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.05), rgba(59, 130, 246, 0.05));
+}
+
+.profile-cta-blur {
+  backdrop-filter: blur(8px);
+}
+
+.glow-green {
+  filter: drop-shadow(0 0 8px rgba(74, 222, 128, 0.5));
+}
+
+.glow-blue {
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.5));
+}
+
+.glow-purple {
+  filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.5));
+} 

@@ -1,0 +1,73 @@
+.episodes-carousel-wrapper .slick-slide,
+.locations-carousel-wrapper .slick-slide,
+.characters-carousel-wrapper .slick-slide {
+  height: auto;
+  display: flex;
+}
+
+.episodes-carousel-wrapper .slick-track,
+.locations-carousel-wrapper .slick-track,
+.characters-carousel-wrapper .slick-track {
+  display: flex;
+  align-items: stretch;
+}
+
+.episode-card,
+.location-card,
+.character-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 621px) {
+  .episode-card {
+    height: 280px;
+  }
+  
+  .location-card {
+    height: 300px;
+  }
+  
+  .character-card {
+    height: 260px;
+  }
+}
+
+@media (max-width: 620px) {
+  .episode-card {
+    height: 250px;
+  }
+  
+  .location-card {
+    height: 270px;
+  }
+  
+  .character-card {
+    height: 220px;
+  }
+
+  .character-card {
+    @apply p-2;
+  }
+  
+  .character-card h3 {
+    @apply text-sm;
+  }
+  
+  .episode-card {
+    @apply p-2;
+  }
+  
+  .episode-card h3 {
+    @apply text-sm;
+  }
+  
+  .location-card {
+    @apply p-2;
+  }
+  
+  .location-card h3 {
+    @apply text-sm;
+  }
+} 

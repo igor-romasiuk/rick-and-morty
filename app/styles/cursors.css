@@ -1,0 +1,29 @@
+a,
+button,
+[role="button"],
+select,
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+.cursor-pointer {
+  cursor: pointer;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+textarea {
+  cursor: text;
+}
+
+[resize] {
+  cursor: se-resize;
+}
+
+[draggable] {
+  cursor: move;
+} 

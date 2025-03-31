@@ -1,56 +1,73 @@
-# Wubba Lubba Dub Dub! Rick and Morty Explorer
+# Rick and Morty Explorer 🚀
 
-## 🚀 About This Project
+A modern web application that lets you explore the Rick and Morty universe through an interactive and visually appealing interface. Built with Next.js and the official Rick and Morty API.
 
-Welcome to the interdimensional database of Rick and Morty characters, episodes, and locations! This portal lets you explore the multiverse in style, with all your favorite moments from the hit show.
+![Rick and Morty Explorer Homepage](public/homePage.png)
 
-This Next.js application features a sci-fi themed UI that connects to the official [Rick and Morty API](https://rickandmortyapi.com/) to bring you comprehensive data about the show's universe. Browse characters, search through episodes, explore exotic locations, and maintain your own list of favorites.
+## 🔗 Demo
 
-## ✨ Features
+Check out the live demo at: [Rick and Morty Explorer](https://rick-and-morty-gray-zeta.vercel.app)
 
-- **Character Profiles**: Browse detailed information about Rick, Morty, and the whole bizarre cast including status, species, gender, and origin
-- **Episode Guide**: Explore all seasons and episodes with air dates, codes, and character appearances
-- **Location Explorer**: Visit exotic locations across dimensions and view resident information
-- **User Accounts**: Create a profile to save favorite characters, episodes, and locations
-- **Advanced Filtering**: Filter content by various attributes like status, gender, dimension, and more
-- **Responsive Design**: Looks great on devices across all dimensions with a sci-fi themed UI
-- **Dark Mode**: Toggle between light and dark themes for comfortable viewing
-- **API Integration**: Real-time data from the official Rick and Morty API
-- **Optimized Performance**: Client-side caching for faster browsing experience
+## 🌟 Features
 
-## 🛠️ Technology Stack
+- **Character Explorer**: Browse through all Rick and Morty characters with detailed information
+- **Episode Guide**: Access comprehensive episode information and details
+- **Location Database**: Explore various locations from the Rick and Morty universe
+- **Search & Filter**: Find specific characters, episodes, or locations with advanced filtering
+- **Responsive Design**: Fully responsive interface that works on all devices
+- **Modern UI**: Built with Tailwind CSS and Radix UI components
+- **Type Safety**: Written in TypeScript for better development experience
+- **Authentication**: User authentication system for personalized experience
+
+## 🛠️ Tech Stack
 
 - **Framework**: Next.js 15 with App Router
-- **UI**: 
-  - Tailwind CSS for styling
-  - Radix UI components for accessible UI elements
-  - Framer Motion for smooth animations
-- **Authentication**: NextAuth.js with Prisma adapter
-- **Database**: Neon
-- **Data Source**: Rick and Morty API (RESTful)
-- **Development**: TypeScript for type safety
+- **Styling**: Tailwind CSS
+- **UI Components**: Radix UI
+- **Animations**: Framer Motion
+- **Authentication**: NextAuth.js
+- **Database**: Prisma with Neon
+- **Type Safety**: TypeScript
 
-## 🧪 Getting Started
+## 🚀 Getting Started
 
+### Prerequisites
+
+- Node.js 18.x or later
+- npm or yarn package manager
+- A database (Neon recommended)
+
+### Installation
+
+1. Clone the repository:
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/rick-and-morty-test.git
+git clone https://github.com/igor-romasiuk/rick-and-morty.git
+cd rick-and-morty
+```
 
-# Navigate to the project
-cd rick-and-morty-test
-
-# Install dependencies
+2. Install dependencies:
+```bash
 npm install
+```
 
-# Set up environment variables
+3. Set up environment variables:
+```bash
 cp .env.example .env.local
-# Edit .env.local with your database and authentication settings
+```
+Edit `.env.local` with your database credentials and other required variables.
 
-# Run database migrations
+4. Run database migrations:
+```bash
 npx prisma migrate dev
+```
 
-# Run the development server with Turbopack
+5. Start the development server:
+```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The application will be available at [http://localhost:3000](http://localhost:3000)
+
+## 🙏 Acknowledgments
+
+- [Rick and Morty API](https://rickandmortyapi.com/) for providing the data

@@ -67,14 +67,17 @@ export function HeroSection() {
               className="absolute inset-0 rounded-full border-4 border-dashed border-blue-400/30 dark:border-blue-400/50 animate-spin-slow"
               style={{ animationDirection: "reverse" }}
             ></div>
-            <Image
-              src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-              alt="Rick and Morty"
-              width={600}
-              height={450}
-              className="relative z-10 rounded-lg object-cover portal-border"
-              priority
-            />
+            <div className="relative z-10 rounded-2xl overflow-hidden">
+              <div className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-blue-500/20 animate-portal-pulse"></div>
+              <Image
+                src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+                alt="Rick and Morty"
+                width={600}
+                height={450}
+                className="relative z-10 rounded-2xl object-cover portal-border"
+                priority
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { useState, useEffect, useCallback, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { signIn, signOut, useSession } from "next-auth/react"
 import { AuthContext, type User } from "./AuthContext"
-import {isFavorite } from "./FavoritesUtils"
+import {isFavorite } from "@/utils/FavoritesUtils"
 
 export { useAuth } from "@/hooks/use-auth"
 

@@ -1,0 +1,59 @@
+.stars-bg {
+  @apply fixed inset-0 z-0 overflow-hidden;
+}
+
+.stars-small,
+.stars-medium,
+.stars-large {
+  @apply absolute inset-0 bg-repeat;
+  background-image: radial-gradient(1px 1px at calc(100% * var(--x)) calc(100% * var(--y)), white, transparent);
+  opacity: 0.3;
+}
+
+.stars-small {
+  --x: 0.5;
+  --y: 0.7;
+  background-size: 200px 200px;
+  animation: stars-move-small 100s linear infinite;
+}
+
+.stars-medium {
+  --x: 0.2;
+  --y: 0.9;
+  background-size: 300px 300px;
+  animation: stars-move-medium 150s linear infinite;
+}
+
+.stars-large {
+  --x: 0.9;
+  --y: 0.4;
+  background-size: 500px 500px;
+  animation: stars-move-large 200s linear infinite;
+}
+
+@keyframes stars-move-small {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 10000px 5000px;
+  }
+}
+
+@keyframes stars-move-medium {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -5000px 10000px;
+  }
+}
+
+@keyframes stars-move-large {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 10000px -5000px;
+  }
+} 
