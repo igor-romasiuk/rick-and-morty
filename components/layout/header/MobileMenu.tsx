@@ -7,9 +7,9 @@ import { usePathname } from "next/navigation"
 import { X, User as UserIcon, LogIn, LogOut } from "lucide-react"
 import { Button } from "@/components/ui/Button"
 import { motion } from "framer-motion"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import { navigationItems } from "./NavigationItems"
-import { menuVariants, containerVariants, overlayVariants } from "./Animations"
+import { menuVariants, containerVariants, overlayVariants } from "./animations"
 import { MobileMenuProps } from "@/types/header"
 
 export function MobileMenu({ 

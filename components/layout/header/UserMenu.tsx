@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { LogOut, User as UserIcon, LogIn } from "lucide-react"
 import { Button } from "@/components/ui/Button"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,

@@ -1,6 +1,6 @@
 import { CharacterCard } from "@/components/characters/CharacterCard"
 import { Button } from "@/components/ui/Button"
-import { Skeleton } from "@/components/ui/skeleton"
+import { Skeleton } from "@/components/ui/Skeleton"
 import { CharacterGridProps } from "@/types/characters"
 
 export function CharactersGridSkeleton() {

@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Map } from "lucide-react"
 import { PortalCard } from "@/components/common/PortalCard"
 import { SciFiButton } from "@/components/common/SciFiButton"
-import { Carousel } from "@/components/ui/Carousel"
+import { Carousel } from "@/components/ui/carousel"
 import { Location } from "@/types/api"
 
 interface FeaturedLocationsProps {
