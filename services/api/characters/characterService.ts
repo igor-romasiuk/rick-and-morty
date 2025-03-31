@@ -1,5 +1,5 @@
 import { API_ENDPOINTS } from "@/constants/api";
-import { BaseApiService } from "@/services/api/base-service";
+import { BaseApiService } from "@/services/api/baseService";
 import { Character, APIResponse, Episode } from "@/types/api";
 
 export interface CharacterParams {

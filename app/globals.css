@@ -1,8 +1,8 @@
-@import './styles/base.css';
-@import './styles/cursors.css';
-@import './styles/animations.css';
-@import './styles/stars.css';
-@import './styles/components.css';
-@import './styles/responsive.css';
-@import './styles/utilities.css';
-@import './styles/scrollbar.css';
+@import '../styles/base.css';
+@import '../styles/cursors.css';
+@import '../styles/animations.css';
+@import '../styles/stars.css';
+@import '../styles/components.css';
+@import '../styles/responsive.css';
+@import '../styles/utilities.css';
+@import '../styles/scrollbar.css';

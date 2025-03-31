@@ -5,9 +5,9 @@ import { LatestEpisodes } from "@/components/home/LatestEpisodes"
 import { FeaturedLocations } from "@/components/home/FeaturedLocations"
 import { getServerSession } from "next-auth/next"
 import { authOptions } from "@/app/api/auth/options"
-import { characterService } from "@/services/api/characters/character-service"
-import { episodeService } from "@/services/api/episodes/episode-service"
-import { locationService } from "@/services/api/locations/location-service"
+import { characterService } from "@/services/api/characters/characterService"
+import { episodeService } from "@/services/api/episodes/episodeService"
+import { locationService } from "@/services/api/locations/locationService"
 
 export default async function Home() {
   const session = await getServerSession(authOptions)

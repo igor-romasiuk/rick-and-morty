@@ -1,5 +1,5 @@
 import { API_ENDPOINTS } from "@/constants/api";
-import { BaseApiService } from "@/services/api/base-service";
+import { BaseApiService } from "@/services/api/baseService";
 import { Location, APIResponse, Character } from "@/types/api";
 
 export interface LocationParams {

@@ -5,9 +5,9 @@ import { Button } from "@/components/ui/Button"
 import { Input } from "@/components/ui/Input"
 import { Label } from "@/components/ui/label"
 import { Icons } from "@/components/ui/icons"
-import { useAuth } from "@/hooks/use-auth"
+import { useAuth } from "@/hooks/useAuth"
 import { FormErrors } from "@/types/auth"
-import { handleRegisterSubmit } from "../../utils/form-handlers"
+import { handleRegisterSubmit } from "../../utils/formHandlers"
 
 interface RegisterFormProps {
   onClose?: () => void

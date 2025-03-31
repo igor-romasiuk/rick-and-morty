@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { Input } from "@/components/ui/Input"
 import { episodeService } from "@/services/api"
 import { useEffect, useState } from "react"
-import { useDebounce } from "../../hooks/use-debounce"
+import { useDebounce } from "../../hooks/useDebounce"
 import { EpisodesFiltersProps } from "@/types/episodes"
 
 export function EpisodesFilters({

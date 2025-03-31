@@ -1,7 +1,7 @@
-export { characterService } from './characters/character-service';
-export { episodeService } from './episodes/episode-service';
-export { locationService } from './locations/location-service';
+export { characterService } from './characters/characterService';
+export { episodeService } from './episodes/episodeService';
+export { locationService } from './locations/locationService';
 
-export type { CharacterParams } from './characters/character-service';
-export type { EpisodeParams } from './episodes/episode-service';
-export type { LocationParams } from './locations/location-service'; 
+export type { CharacterParams } from './characters/characterService';
+export type { EpisodeParams } from './episodes/episodeService';
+export type { LocationParams } from './locations/locationService'; 

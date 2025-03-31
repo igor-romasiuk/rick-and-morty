@@ -1,7 +1,7 @@
 "use client"
 
 import { createContext, useContext, useState, useCallback, useRef, type ReactNode } from "react"
-import { useAuth } from "@/hooks/use-auth"
+import { useAuth } from "@/hooks/useAuth"
 import { FavoritesContextType } from "@/types/favorites"
 
 const FavoritesContext = createContext<FavoritesContextType | null>(null)

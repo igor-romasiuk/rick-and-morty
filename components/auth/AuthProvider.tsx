@@ -7,7 +7,7 @@ import { signIn, signOut, useSession } from "next-auth/react"
 import { AuthContext, type User } from "./AuthContext"
 import {isFavorite } from "@/utils/FavoritesUtils"
 
-export { useAuth } from "@/hooks/use-auth"
+export { useAuth } from "@/hooks/useAuth"
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)

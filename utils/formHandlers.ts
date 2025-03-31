@@ -1,5 +1,5 @@
 import { FormErrors } from "@/types/auth"
-import { validateLoginForm, validateRegistrationForm } from "@/utils/form-utils"
+import { validateLoginForm, validateRegistrationForm } from "@/utils/formUtils"
 
 interface AuthResponse {
   success: boolean

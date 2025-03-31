@@ -1,4 +1,4 @@
-import { fetchWithCache } from "@/utils/cache/api-cache";
+import { fetchWithCache } from "@/utils/cache/apiCache";
 import { APIResponse } from "@/types/api";
 
 export class BaseApiService {

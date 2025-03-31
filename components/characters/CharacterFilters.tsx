@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { Input } from "@/components/ui/Input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { useEffect, useState } from "react"
-import { useDebounce } from "../../hooks/use-debounce"
+import { useDebounce } from "../../hooks/useDebounce"
 import { CharacterFiltersProps } from "@/types/characters"
 
 export function CharacterFilters({
