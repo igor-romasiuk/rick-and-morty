@@ -1,4 +1,4 @@
-import type { User } from "./AuthContext"
+import type { User } from "@/types/api"
 
 export function isFavorite(
   user: User | null,

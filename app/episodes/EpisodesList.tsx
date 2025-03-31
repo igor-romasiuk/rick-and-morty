@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useSession } from "next-auth/react"
 import { EpisodeCard } from "@/components/episodes/EpisodeCard"
 import { Pagination } from "@/components/common/Pagination"
-import { EpisodesListProps } from "@/types/rick-morty"
+import { EpisodesListProps } from "@/types/api"
 
 export function EpisodesList({ episodes, info, params }: EpisodesListProps) {
   const { data: session } = useSession()

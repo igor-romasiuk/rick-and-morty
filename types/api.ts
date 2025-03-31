@@ -107,7 +107,9 @@ export interface LocationsListProps {
 
 export interface EpisodesListProps {
   episodes: Episode[];
-  isLoading: boolean;
+  info: PaginationInfo;
+  params: ApiParams;
+  isLoading?: boolean;
 }
 
 export interface EpisodeDetailsProps {
