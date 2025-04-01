@@ -1,10 +1,24 @@
 "use client"
 
-import Link from "next/link"
 import { Button } from "@/components/ui/Button"
 import { PaginationProps } from "@/types/common"
+import { useRouter } from "next/navigation"
 
 export function Pagination({ currentPage, totalPages, baseUrl, query = {} }: PaginationProps) {
+  const router = useRouter()
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const navigateWithScroll = (page: number) => {
+    const queryParams = new URLSearchParams({ ...query, page: page.toString() }).toString()
+    const url = `${baseUrl}?${queryParams}`
+
+    router.push(url)
+    scrollToTop()
+  }
+
   const getPageNumbers = () => {
     const delta = 2;
     const range = [];
@@ -43,19 +57,13 @@ export function Pagination({ currentPage, totalPages, baseUrl, query = {} }: Pag
   return (
     <div className="flex justify-center items-center space-x-2 mt-8">
       {currentPage > 1 && (
-        <Link
-          href={{
-            pathname: baseUrl,
-            query: { ...query, page: currentPage - 1 }
-          }}
+        <Button
+          variant="outline"
+          className="w-10 h-10 p-0 rounded-full border-green-500/30 text-green-400 hover:bg-green-500/20"
+          onClick={() => navigateWithScroll(currentPage - 1)}
         >
-          <Button
-            variant="outline"
-            className="w-10 h-10 p-0 rounded-full border-green-500/30 text-green-400 hover:bg-green-500/20"
-          >
-            &lt;
-          </Button>
-        </Link>
+          &lt;
+        </Button>
       )}
 
       {getPageNumbers().map((pageNumber, index) => {
@@ -65,41 +73,29 @@ export function Pagination({ currentPage, totalPages, baseUrl, query = {} }: Pag
 
         const isCurrentPage = pageNumber === currentPage;
         return (
-          <Link
+          <Button
             key={pageNumber}
-            href={{
-              pathname: baseUrl,
-              query: { ...query, page: pageNumber }
-            }}
-          >
-            <Button
-              variant={isCurrentPage ? "default" : "outline"}
-              className={`w-10 h-10 p-0 rounded-full ${
-                isCurrentPage
-                  ? "bg-green-500 text-black"
-                  : "border-green-500/30 text-green-400 hover:bg-green-500/20"
+            variant={isCurrentPage ? "default" : "outline"}
+            className={`w-10 h-10 p-0 rounded-full ${isCurrentPage
+              ? "bg-green-500 text-black"
+              : "border-green-500/30 text-green-400 hover:bg-green-500/20"
               }`}
-            >
-              {pageNumber}
-            </Button>
-          </Link>
+            onClick={() => !isCurrentPage && navigateWithScroll(Number(pageNumber))}
+            disabled={isCurrentPage}
+          >
+            {pageNumber}
+          </Button>
         );
       })}
 
       {currentPage < totalPages && (
-        <Link
-          href={{
-            pathname: baseUrl,
-            query: { ...query, page: currentPage + 1 }
-          }}
+        <Button
+          variant="outline"
+          className="w-10 h-10 p-0 rounded-full border-green-500/30 text-green-400 hover:bg-green-500/20"
+          onClick={() => navigateWithScroll(currentPage + 1)}
         >
-          <Button
-            variant="outline"
-            className="w-10 h-10 p-0 rounded-full border-green-500/30 text-green-400 hover:bg-green-500/20"
-          >
-            &gt;
-          </Button>
-        </Link>
+          &gt;
+        </Button>
       )}
     </div>
   );

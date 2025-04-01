@@ -140,9 +140,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }
 
   const logout = async () => {
-    await signOut({ redirect: false })
-    setUser(null)
-    window.location.href = "/"
+    try {
+      await signOut({ redirect: false })
+      setUser(null)
+      router.push("/")
+    } catch (error) {
+      console.error("Logout error:", error)
+    }
   }
 
   const updateFavorites = async (type: "characters" | "episodes" | "locations", id: number, action: "add" | "remove") => {

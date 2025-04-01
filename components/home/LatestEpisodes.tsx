@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Tv } from "lucide-react"
 import { PortalCard } from "@/components/common/PortalCard"
 import { SciFiButton } from "@/components/common/SciFiButton"
-import { Carousel } from "@/components/ui/carousel"
+import { Carousel } from "@/components/ui/Carousel"
 import { Episode } from "@/types/api"
 
 interface LatestEpisodesProps {
@@ -23,8 +23,8 @@ export function LatestEpisodes({ episodes }: LatestEpisodesProps) {
         </div>
 
         <div className="episodes-carousel-wrapper">
-          <Carousel 
-            maxItems={20} 
+          <Carousel
+            maxItems={20}
             scrollSpeed={0.1}
             slidesToShow={4}
             centerMode={true}

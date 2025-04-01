@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Map } from "lucide-react"
 import { PortalCard } from "@/components/common/PortalCard"
 import { SciFiButton } from "@/components/common/SciFiButton"
-import { Carousel } from "@/components/ui/carousel"
+import { Carousel } from "@/components/ui/Carousel"
 import { Location } from "@/types/api"
 
 interface FeaturedLocationsProps {
@@ -22,8 +22,8 @@ export function FeaturedLocations({ locations }: FeaturedLocationsProps) {
         </div>
 
         <div className="locations-carousel-wrapper">
-          <Carousel 
-            maxItems={20} 
+          <Carousel
+            maxItems={20}
             scrollSpeed={0.06}
             slidesToShow={3}
             centerMode={true}

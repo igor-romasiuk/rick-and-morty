@@ -4,23 +4,24 @@ import { useState, useEffect, useMemo } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Menu } from "lucide-react"
-import { useSession, signOut } from "next-auth/react"
+import { useSession } from "next-auth/react"
 import { ThemeToggle } from "@/components/common/ThemeToggle"
 import { motion, AnimatePresence } from "framer-motion"
 import { DesktopNavigation } from "@/components/layout/header/DesktopNavigation"
 import { UserMenu } from "@/components/layout/header/UserMenu"
 import { MobileMenu } from "@/components/layout/header/MobileMenu"
 import { type User } from "@/components/auth/AuthContext"
+import { useAuth } from "@/components/auth/AuthProvider"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const { data: session, status } = useSession()
   const isLoading = status === "loading"
-  
+
   const user = useMemo(() => {
     if (!session?.user) return null;
-    
+
     return {
       id: session.user.id as string,
       name: session.user.name || "",
@@ -33,17 +34,17 @@ export default function Header() {
       }
     } as User;
   }, [session]);
-  
+
   const [menuHeight, setMenuHeight] = useState("100%")
 
   useEffect(() => {
     if (isMenuOpen && typeof window !== 'undefined') {
       setMenuHeight(`${window.innerHeight}px`)
-      
+
       const handleResize = () => {
         setMenuHeight(`${window.innerHeight}px`)
       }
-      
+
       window.addEventListener('resize', handleResize)
       return () => {
         window.removeEventListener('resize', handleResize)
@@ -71,14 +72,15 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const context = useAuth()
+
   if (isLoading) {
     return (
       <header
-        className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-          isScrolled
+        className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled
             ? "bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-green-500/20"
             : "bg-transparent"
-        }`}
+          }`}
       >
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link href="/" className="relative z-10 flex items-center">
@@ -94,16 +96,17 @@ export default function Header() {
   }
 
   const handleLogout = () => {
-    signOut({ callbackUrl: "/" })
+    if (context?.logout) {
+      context.logout()
+    }
   }
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${isScrolled
           ? "bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-gray-200 dark:border-green-500/20"
           : "bg-transparent"
-      }`}
+        }`}
     >
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/" className="relative z-10 flex items-center">
@@ -132,7 +135,7 @@ export default function Header() {
       </div>
 
       <AnimatePresence mode="wait">
-        <MobileMenu 
+        <MobileMenu
           isMenuOpen={isMenuOpen}
           setIsMenuOpen={setIsMenuOpen}
           menuHeight={menuHeight}

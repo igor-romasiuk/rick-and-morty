@@ -9,15 +9,15 @@ import { Button } from "@/components/ui/Button"
 import { motion } from "framer-motion"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import { navigationItems } from "./NavigationItems"
-import { menuVariants, containerVariants, overlayVariants } from "./animations"
+import { menuVariants, containerVariants, overlayVariants } from "./Animations"
 import { MobileMenuProps } from "@/types/header"
 
-export function MobileMenu({ 
-  isMenuOpen, 
-  setIsMenuOpen, 
-  menuHeight, 
-  user, 
-  handleLogout 
+export function MobileMenu({
+  isMenuOpen,
+  setIsMenuOpen,
+  menuHeight,
+  user,
+  handleLogout
 }: MobileMenuProps) {
   const pathname = usePathname()
   const menuRef = useRef<HTMLDivElement>(null)
@@ -26,7 +26,7 @@ export function MobileMenu({
 
   return (
     <>
-      <motion.div 
+      <motion.div
         className="fixed inset-0 bg-black/50 z-50 md:hidden"
         initial="hidden"
         animate="visible"
@@ -34,7 +34,7 @@ export function MobileMenu({
         variants={overlayVariants}
         onClick={() => setIsMenuOpen(false)}
       />
-      
+
       <motion.div
         ref={menuRef}
         className="fixed top-0 right-0 bottom-0 w-[300px] z-50 bg-white dark:bg-gray-900 shadow-xl md:hidden overflow-y-auto scrollbar-hide"
@@ -45,7 +45,7 @@ export function MobileMenu({
         style={{ height: menuHeight, maxHeight: '100vh' }}
       >
         <div className="flex flex-col h-full">
-          <motion.div 
+          <motion.div
             className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-800 sticky top-0 bg-white dark:bg-gray-900 z-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -66,7 +66,7 @@ export function MobileMenu({
             </motion.button>
           </motion.div>
 
-          <motion.nav 
+          <motion.nav
             className="flex-1 p-4 overflow-y-auto"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -77,7 +77,7 @@ export function MobileMenu({
               {navigationItems.map((item, index) => {
                 const isActive = pathname === item.path || (pathname.startsWith(item.path + "/") && item.path !== "/")
                 const Icon = item.icon
-                
+
                 return (
                   <motion.div
                     key={item.name}
@@ -89,27 +89,26 @@ export function MobileMenu({
                   >
                     <Link
                       href={item.path}
-                      className={`flex items-center px-4 py-3 text-base font-medium rounded-lg transition-colors ${
-                        isActive
+                      className={`flex items-center px-4 py-3 text-base font-medium rounded-lg transition-colors ${isActive
                           ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300"
                           : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
-                      }`}
+                        }`}
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <Icon className="mr-3 h-5 w-5" />
                       {item.name}
                       {isActive && (
-                        <motion.span 
+                        <motion.span
                           className="ml-auto w-1.5 h-1.5 rounded-full bg-green-500"
                           layoutId="activeIndicator"
                           initial={{ scale: 0.8, opacity: 0.8 }}
-                          animate={{ 
+                          animate={{
                             scale: [0.8, 1.2, 1],
                             opacity: 1,
-                            transition: { 
+                            transition: {
                               duration: 1.2,
                               repeat: Infinity,
-                              repeatType: "reverse" 
+                              repeatType: "reverse"
                             }
                           }}
                         />
@@ -121,7 +120,7 @@ export function MobileMenu({
             </div>
           </motion.nav>
 
-          <motion.div 
+          <motion.div
             className="p-4 pr-6 border-t border-gray-200 dark:border-gray-800 sticky bottom-0 bg-white dark:bg-gray-900 z-10 mt-auto"
             variants={menuVariants}
             custom={navigationItems.length}
@@ -129,7 +128,7 @@ export function MobileMenu({
           >
             {user ? (
               <div className="space-y-3">
-                <motion.div 
+                <motion.div
                   className="flex items-center p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -145,7 +144,7 @@ export function MobileMenu({
                     <p className="text-xs text-gray-500 dark:text-gray-400 truncate max-w-[150px]">{user.email}</p>
                   </div>
                 </motion.div>
-                
+
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -161,7 +160,7 @@ export function MobileMenu({
                     Profile
                   </Link>
                 </motion.div>
-                
+
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -187,7 +186,7 @@ export function MobileMenu({
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               >
-                <Link 
+                <Link
                   href="/login"
                   onClick={() => setIsMenuOpen(false)}
                 >

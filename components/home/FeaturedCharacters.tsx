@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { SciFiButton } from "@/components/common/SciFiButton"
-import { Carousel } from "@/components/ui/carousel"
+import { Carousel } from "@/components/ui/Carousel"
 import { Character } from "@/types/api"
 
 interface FeaturedCharactersProps {
@@ -23,8 +23,8 @@ export function FeaturedCharacters({ characters }: FeaturedCharactersProps) {
         </div>
 
         <div className="characters-carousel-wrapper">
-          <Carousel 
-            maxItems={20} 
+          <Carousel
+            maxItems={20}
             scrollSpeed={0.08}
             slidesToShow={5}
             centerMode={true}
