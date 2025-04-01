@@ -6,7 +6,7 @@ A modern web application that lets you explore the Rick and Morty universe throu
 
 ## 🔗 Demo
 
-Check out the live demo at: [Rick and Morty Explorer](https://rick-and-morty-gray-zeta.vercel.app)
+Check out the live demo at: [Rick and Morty Explorer](https://rick-and-morty-ivory-phi.vercel.app)
 
 ## 🌟 Features
 
