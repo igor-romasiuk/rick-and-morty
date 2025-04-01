@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/Button"
 import { motion } from "framer-motion"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import { navigationItems } from "./NavigationItems"
-import { menuVariants, containerVariants, overlayVariants } from "./Animations"
+import { menuVariants, containerVariants, overlayVariants } from "./animations"
 import { MobileMenuProps } from "@/types/header"
 
 export function MobileMenu({ 

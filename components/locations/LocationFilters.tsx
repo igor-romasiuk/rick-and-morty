@@ -2,7 +2,7 @@
 
 import { useRouter, useSearchParams } from "next/navigation"
 import { Input } from "@/components/ui/Input"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select"
 import { useEffect, useState } from "react"
 import { useDebounce } from "../../hooks/useDebounce"
 import { LocationFiltersProps } from "@/types/locations"
@@ -18,6 +18,9 @@ export function LocationFilters({
   const debouncedSearch = useDebounce(searchValue, 500)
 
   useEffect(() => {
+    // Skip if no changes to search
+    if (debouncedSearch === search) return;
+
     const params = new URLSearchParams(searchParams.toString())
     params.set("page", "1")
     if (debouncedSearch) {
@@ -26,7 +29,7 @@ export function LocationFilters({
       params.delete("name")
     }
     router.push(`/locations?${params.toString()}`)
-  }, [debouncedSearch, router, searchParams])
+  }, [debouncedSearch, router, searchParams, search])
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value)

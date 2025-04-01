@@ -19,15 +19,17 @@ export function CharacterFilters({
   const debouncedSearch = useDebounce(searchValue, 500)
 
   useEffect(() => {
+    if (debouncedSearch === search) return; // Skip if the search hasn't actually changed
+
     const params = new URLSearchParams(searchParams.toString())
-    params.set("page", "1")
+    params.set("page", "1") // Reset page when search changes
     if (debouncedSearch) {
       params.set("name", debouncedSearch)
     } else {
       params.delete("name")
     }
     router.push(`/characters?${params.toString()}`)
-  }, [debouncedSearch, router, searchParams])
+  }, [debouncedSearch, router, searchParams, search])
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value)

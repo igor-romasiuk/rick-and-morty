@@ -20,6 +20,9 @@ export function EpisodesFilters({
   const codeError = codeValue && !episodeService.validateEpisodeCode(codeValue) ? "Invalid format. Use SXXEXX (e.g., S01E01)" : null
 
   useEffect(() => {
+    // Skip if no changes to search or code
+    if (debouncedSearch === search && debouncedCode === episodeCode) return;
+
     const params = new URLSearchParams(searchParams.toString())
     params.set("page", "1")
 
@@ -36,7 +39,7 @@ export function EpisodesFilters({
     }
 
     router.push(`/episodes?${params.toString()}`)
-  }, [debouncedSearch, debouncedCode, router, searchParams])
+  }, [debouncedSearch, debouncedCode, router, searchParams, search, episodeCode])
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>, type: "name" | "episode") => {
     if (type === "name") {
