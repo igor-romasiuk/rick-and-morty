@@ -7,16 +7,13 @@ import { useRouter } from "next/navigation"
 export function Pagination({ currentPage, totalPages, baseUrl, query = {} }: PaginationProps) {
   const router = useRouter()
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
   const navigateWithScroll = (page: number) => {
     const queryParams = new URLSearchParams({ ...query, page: page.toString() }).toString()
     const url = `${baseUrl}?${queryParams}`
 
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    
     router.push(url)
-    scrollToTop()
   }
 
   const getPageNumbers = () => {
