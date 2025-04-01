@@ -11,7 +11,7 @@ export function Pagination({ currentPage, totalPages, baseUrl, query = {} }: Pag
     const queryParams = new URLSearchParams({ ...query, page: page.toString() }).toString()
     const url = `${baseUrl}?${queryParams}`
 
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    window.scrollTo({ top: 0, behavior: 'instant' })
     
     router.push(url)
   }
