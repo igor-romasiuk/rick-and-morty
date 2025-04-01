@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { SciFiButton } from "@/components/common/SciFiButton"
-import { Carousel } from "@/components/ui/Carousel"
+import { Carousel } from "@/components/ui/carousel"
 import { Character } from "@/types/api"
 
 interface FeaturedCharactersProps {
