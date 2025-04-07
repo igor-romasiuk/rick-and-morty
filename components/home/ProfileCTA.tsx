@@ -46,7 +46,7 @@ export function ProfileCTA({ user }: ProfileCTAProps) {
                   className="whitespace-nowrap"
                   onClick={() => window.location.href = '/profile'}
                 >
-                  <User className="mr-2 h-4 w-4" />
+                  <User className="h-4 w-4" />
                   Go to Profile
                 </SciFiButton>
               </div>

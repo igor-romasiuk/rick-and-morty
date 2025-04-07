@@ -44,8 +44,7 @@ export function SciFiButton({
       )}
       {...props}
     >
-      <span className="relative z-10 w-full text-center">{children}</span>
+      <span className="relative z-10 w-full flex text-center items-center gap-2">{children}</span>
     </button>
   )
 }
-

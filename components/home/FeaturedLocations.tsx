@@ -67,7 +67,7 @@ export function FeaturedLocations({ locations }: FeaturedLocationsProps) {
         <div className="text-center mt-12">
           <Link href="/locations" className="inline-block">
             <SciFiButton variant="outline" className="hover:scale-105 transition-transform duration-200 hover:brightness-110">
-              <Map className="mr-2 h-4 w-4" />
+              <Map className="h-4 w-4" />
               View All Locations
             </SciFiButton>
           </Link>
@@ -75,4 +75,4 @@ export function FeaturedLocations({ locations }: FeaturedLocationsProps) {
       </div>
     </section>
   )
-} 
+}
