@@ -17,36 +17,38 @@ export function Pagination({ currentPage, totalPages, baseUrl, query = {} }: Pag
   }
 
   const getPageNumbers = () => {
-    const delta = 2;
-    const range = [];
-    const rangeWithDots = [];
-
-    range.push(1);
-
-    for (let i = currentPage - delta; i <= currentPage + delta; i++) {
+    const siblingsCount = 2;
+    
+    const pageRange = [1];
+    
+    for (let i = currentPage - siblingsCount; i <= currentPage + siblingsCount; i++) {
       if (i > 1 && i < totalPages) {
-        range.push(i);
+        pageRange.push(i);
       }
     }
-
+    
     if (totalPages > 1) {
-      range.push(totalPages);
+      pageRange.push(totalPages);
     }
-
-    let l;
-    for (const i of range) {
-      if (l) {
-        if (i - l === 2) {
-          rangeWithDots.push(l + 1);
-        } else if (i - l !== 1) {
-          rangeWithDots.push('...');
+    
+    const paginationWithEllipsis = [];
+    let previousPage = null;
+    
+    for (const page of pageRange) {
+      if (previousPage) {
+        if (page - previousPage === 2) {
+          paginationWithEllipsis.push(previousPage + 1);
+        } 
+        else if (page - previousPage > 1) {
+          paginationWithEllipsis.push('...');
         }
       }
-      rangeWithDots.push(i);
-      l = i;
+      
+      paginationWithEllipsis.push(page);
+      previousPage = page;
     }
-
-    return rangeWithDots;
+    
+    return paginationWithEllipsis;
   };
 
   if (totalPages <= 1) return null;
@@ -64,7 +66,7 @@ export function Pagination({ currentPage, totalPages, baseUrl, query = {} }: Pag
       )}
 
       {getPageNumbers().map((pageNumber, index) => {
-        if (pageNumber === '...') {
+        if (pageNumber === '0') {
           return <span key={`dots-${index}`} className="text-gray-500">...</span>;
         }
 
@@ -96,4 +98,4 @@ export function Pagination({ currentPage, totalPages, baseUrl, query = {} }: Pag
       )}
     </div>
   );
-} 
+}

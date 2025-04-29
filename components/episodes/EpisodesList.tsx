@@ -18,4 +18,4 @@ export function EpisodesList({ episodes }: EpisodesListProps) {
       </div>
     </div>
   )
-} 
+}

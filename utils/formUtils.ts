@@ -19,7 +19,7 @@ export function validatePassword(password: string, isLogin: boolean = false): bo
 
 export function getPasswordErrorMessage(isLogin: boolean = false): string {
   if (isLogin) {
-    return "Password must be at least 6 characters"
+    return "Password must be at least 8 characters"
   }
   return "Password must be at least 8 characters and include uppercase, lowercase, number, and special character"
 }
@@ -68,4 +68,4 @@ export function validateLoginForm(form: HTMLFormElement): FormErrors {
   }
   
   return errors
-} 
+}

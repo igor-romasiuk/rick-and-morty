@@ -6,6 +6,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { FavoriteButton } from "@/components/ui/FavoriteButton"
 import { CharacterCardProps } from "@/types/characters"
+import { getRoute } from "@/constants/routes"
 
 export function CharacterCard({
   id,
@@ -18,8 +19,30 @@ export function CharacterCard({
 }: CharacterCardProps) {
   const [isHovered, setIsHovered] = useState(false)
 
+  const handleMouseEnter = () => setIsHovered(true)
+  const handleMouseLeave = () => setIsHovered(false)
+
+  const getStatusColorClass = (status: string) => {
+    const statusLower = status.toLowerCase()
+    
+    if (statusLower === "alive") {
+      return "text-green-600 dark:text-green-400"
+    }
+    
+    if (statusLower === "dead") {
+      return "text-red-500 dark:text-red-400"
+    }
+    
+    return "text-yellow-500 dark:text-yellow-400"
+  }
+
   return (
-    <Link href={`/characters/${id}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} className="block h-full">
+    <Link 
+      href={getRoute.character(id)} 
+      onMouseEnter={handleMouseEnter} 
+      onMouseLeave={handleMouseLeave} 
+      className="block h-full"
+    >
       <div className="h-full flex flex-col bg-white/40 dark:bg-black/40 border border-gray-200 dark:border-green-500/30 rounded-lg overflow-hidden hover:border-green-500 dark:hover:border-green-400 transition-all hover:shadow-lg dark:hover:shadow-[0_0_15px_rgba(74,222,128,0.3)] group">
         <div className="w-full aspect-square relative overflow-hidden">
           <Image
@@ -45,15 +68,7 @@ export function CharacterCard({
           <div className="flex flex-col text-xs sm:text-sm space-y-0.5">
             <span className="text-gray-600 dark:text-gray-400">
               Status:{" "}
-              <span
-                className={`${
-                  status.toLowerCase() === "alive"
-                    ? "text-green-600 dark:text-green-400"
-                    : status.toLowerCase() === "dead"
-                      ? "text-red-500 dark:text-red-400"
-                      : "text-yellow-500 dark:text-yellow-400"
-                }`}
-              >
+              <span className={getStatusColorClass(status)}>
                 {status}
               </span>
             </span>
@@ -66,4 +81,3 @@ export function CharacterCard({
     </Link>
   )
 }
-

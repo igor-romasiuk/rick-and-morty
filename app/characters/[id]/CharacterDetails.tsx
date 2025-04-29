@@ -3,7 +3,7 @@
 import { CharacterBreadcrumbs } from "@/components/characters/CharacterBreadcrumbs"
 import { CharacterImage } from "@/components/characters/CharacterImage"
 import { CharacterInfo } from "@/components/characters/CharacterInfo"
-import { EpisodesList } from "@/components/characters/EpisodesList"
+import { EpisodesList } from "@/components/episodes/EpisodesList"
 import { useSession } from "next-auth/react"
 import { CharacterDetailsProps } from "@/types/api"
 

@@ -1,11 +1,11 @@
 "use client"
 
-import { useRouter, useSearchParams } from "next/navigation"
 import { Input } from "@/components/ui/Input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select"
 import { useEffect, useState } from "react"
 import { useDebounce } from "../../hooks/useDebounce"
 import { CharacterFiltersProps } from "@/types/characters"
+import { useAppNavigation } from "@/utils/navigation"
 
 export function CharacterFilters({
   search,
@@ -13,37 +13,36 @@ export function CharacterFilters({
   species,
   gender,
 }: CharacterFiltersProps) {
-  const router = useRouter()
-  const searchParams = useSearchParams()
+  const { navigateWithParams } = useAppNavigation()
   const [searchValue, setSearchValue] = useState(search)
   const debouncedSearch = useDebounce(searchValue, 500)
 
   useEffect(() => {
-    if (debouncedSearch === search) return; // Skip if the search hasn't actually changed
+    if (debouncedSearch === search) return;
 
-    const params = new URLSearchParams(searchParams.toString())
-    params.set("page", "1") // Reset page when search changes
+    const params: Record<string, string> = { page: "1" };
+    
     if (debouncedSearch) {
-      params.set("name", debouncedSearch)
-    } else {
-      params.delete("name")
+      params.name = debouncedSearch;
     }
-    router.push(`/characters?${params.toString()}`)
-  }, [debouncedSearch, router, searchParams, search])
+    
+    navigateWithParams(params);
+  }, [debouncedSearch, navigateWithParams, search])
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value)
   }
 
   const handleFilter = (value: string, type: "status" | "species" | "gender") => {
-    const params = new URLSearchParams(searchParams.toString())
+    const params: Record<string, string> = { page: "1" };
+    
     if (value && value !== "all") {
-      params.set(type, value)
+      params[type] = value;
     } else {
-      params.delete(type)
+      params[type] = "";
     }
-    params.set("page", "1")
-    router.push(`/characters?${params.toString()}`)
+    
+    navigateWithParams(params);
   }
 
   return (
@@ -111,4 +110,4 @@ export function CharacterFilters({
       </div>
     </div>
   )
-} 
+}
